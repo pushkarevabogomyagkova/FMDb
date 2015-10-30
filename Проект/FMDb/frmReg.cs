@@ -14,7 +14,8 @@ namespace FMDb
     public partial class frmReg : Form
     {
         string ConnectionString { get; set; }
-        public frmReg()
+        frmLogIn frm;
+        public frmReg( frmLogIn _frm)
         {
             InitializeComponent();
             var sb = new SqlConnectionStringBuilder
@@ -24,6 +25,7 @@ namespace FMDb
                 IntegratedSecurity = true
             };
             ConnectionString = sb.ConnectionString;
+            frm = _frm;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -32,7 +34,10 @@ namespace FMDb
         }
 
         private void bntRegist_Click(object sender, EventArgs e)
-        {
+        {    if (tbNewLog.Text != "")
+            {
+                if (tbNewPass.Text != "")
+                {
             var sqlconection = new SqlConnection(ConnectionString);
             using (sqlconection)
             {
@@ -46,10 +51,10 @@ namespace FMDb
 
                 SqlDataReader dr = command.ExecuteReader();
                 if (dr.Read())
-                {label1.Text="Такой логин уже есть";}
+                { lblEL.Text = "Такой логин уже есть"; dr.Close(); }
                 else {
                 SqlConnection conn = null;
-                String query = "INSERT INTO Login VALUES ('{0}','{1}','False')";
+                string query = "INSERT INTO Login VALUES ('{0}','{1}','False')";
                 try
                 {
                     conn = new SqlConnection(ConnectionString);
@@ -70,15 +75,26 @@ namespace FMDb
                 {
                     conn.Close();
                 }
-                String NewLog = tbNewLog.Text;
-                String NewPass = tbNewPass.Text;
-                frmLogIn newLogIn = new frmLogIn(NewLog, NewPass);
-                newLogIn.Show();
+                frm.tbLog.Text = tbNewLog.Text;
+                frm.tbPass.Text = tbNewPass.Text;
                 this.Hide();
                 }
                 
                 dr.Close();
             }
+                }
+                else { lblEP.Text = "Введите пароль"; }
+            }
+        else { lblEL.Text = "Введите логин"; }
+        }
+        private void tbNewLog_TextChanged(object sender, EventArgs e)
+        {
+            lblEL.Text = "";
+        }
+
+        private void tbNewPass_TextChanged(object sender, EventArgs e)
+        {
+            lblEP.Text = "";
         }
     }
 }

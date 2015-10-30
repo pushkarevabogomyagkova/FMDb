@@ -142,7 +142,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход";
-            this.Load += new System.EventHandler(this.frmLogIn_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogIn_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,12 +153,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblErrPass;
         private System.Windows.Forms.Label lblErrLog;
-        private System.Windows.Forms.TextBox tbLog;
-        private System.Windows.Forms.TextBox tbPass;
         private System.Windows.Forms.Button btnLogIn;
         private System.Windows.Forms.Button btnReg;
         private System.Windows.Forms.Label lbllog;
         private System.Windows.Forms.Label lblpass;
+        public System.Windows.Forms.TextBox tbLog;
+        public System.Windows.Forms.TextBox tbPass;
     }
 }
 
