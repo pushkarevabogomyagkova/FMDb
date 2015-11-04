@@ -19,7 +19,8 @@ namespace FMDb
             InitializeComponent();
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "SUPER_PC",
+                //DataSource = "SUPER_PC",
+                DataSource = "GALINA-PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };

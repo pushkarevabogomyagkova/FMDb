@@ -58,15 +58,16 @@
             this.tsbtnLogOut = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSearch = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.viewFilmBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fMDbDataSet = new FMDb.FMDbDataSet();
             this.viewFilmTableAdapter = new FMDb.FMDbDataSetTableAdapters.ViewFilmTableAdapter();
+            this.btnRate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             this.panelSearch.SuspendLayout();
             this.tsAdmin.SuspendLayout();
@@ -82,6 +83,7 @@
             this.filterboxName.Name = "filterboxName";
             this.filterboxName.Size = new System.Drawing.Size(100, 20);
             this.filterboxName.TabIndex = 4;
+            this.filterboxName.TextChanged += new System.EventHandler(this.filterboxName_TextChanged);
             // 
             // filterboxYear
             // 
@@ -89,6 +91,7 @@
             this.filterboxYear.Name = "filterboxYear";
             this.filterboxYear.Size = new System.Drawing.Size(100, 20);
             this.filterboxYear.TabIndex = 5;
+            this.filterboxYear.TextChanged += new System.EventHandler(this.filterboxYear_TextChanged);
             // 
             // filterboxTime
             // 
@@ -96,6 +99,7 @@
             this.filterboxTime.Name = "filterboxTime";
             this.filterboxTime.Size = new System.Drawing.Size(100, 20);
             this.filterboxTime.TabIndex = 6;
+            this.filterboxTime.TextChanged += new System.EventHandler(this.filterboxTime_TextChanged);
             // 
             // filterboxRate
             // 
@@ -103,6 +107,7 @@
             this.filterboxRate.Name = "filterboxRate";
             this.filterboxRate.Size = new System.Drawing.Size(100, 20);
             this.filterboxRate.TabIndex = 7;
+            this.filterboxRate.TextChanged += new System.EventHandler(this.filterboxRate_TextChanged);
             // 
             // pictureBoxPoster
             // 
@@ -124,7 +129,7 @@
             // lbGenre
             // 
             this.lbGenre.FormattingEnabled = true;
-            this.lbGenre.Location = new System.Drawing.Point(554, 91);
+            this.lbGenre.Location = new System.Drawing.Point(554, 79);
             this.lbGenre.Name = "lbGenre";
             this.lbGenre.Size = new System.Drawing.Size(220, 69);
             this.lbGenre.TabIndex = 14;
@@ -132,7 +137,7 @@
             // lbCountry
             // 
             this.lbCountry.FormattingEnabled = true;
-            this.lbCountry.Location = new System.Drawing.Point(554, 166);
+            this.lbCountry.Location = new System.Drawing.Point(554, 154);
             this.lbCountry.Name = "lbCountry";
             this.lbCountry.Size = new System.Drawing.Size(220, 69);
             this.lbCountry.TabIndex = 15;
@@ -140,7 +145,7 @@
             // lbActors
             // 
             this.lbActors.FormattingEnabled = true;
-            this.lbActors.Location = new System.Drawing.Point(554, 262);
+            this.lbActors.Location = new System.Drawing.Point(554, 229);
             this.lbActors.Name = "lbActors";
             this.lbActors.Size = new System.Drawing.Size(220, 69);
             this.lbActors.TabIndex = 16;
@@ -148,7 +153,7 @@
             // lbProd
             // 
             this.lbProd.FormattingEnabled = true;
-            this.lbProd.Location = new System.Drawing.Point(554, 353);
+            this.lbProd.Location = new System.Drawing.Point(554, 304);
             this.lbProd.Name = "lbProd";
             this.lbProd.Size = new System.Drawing.Size(220, 69);
             this.lbProd.TabIndex = 17;
@@ -201,12 +206,13 @@
             // btnPlay
             // 
             this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnPlay.Location = new System.Drawing.Point(570, 428);
+            this.btnPlay.Location = new System.Drawing.Point(565, 411);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(194, 51);
             this.btnPlay.TabIndex = 23;
             this.btnPlay.Text = "►";
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // BtnExt
             // 
@@ -227,6 +233,7 @@
             this.checkView.TabIndex = 26;
             this.checkView.Text = "просмотрен";
             this.checkView.UseVisualStyleBackColor = true;
+            this.checkView.CheckStateChanged += new System.EventHandler(this.checkView_CheckedChanged);
             // 
             // panelSearch
             // 
@@ -268,6 +275,7 @@
             this.tsbtnAdd.Name = "tsbtnAdd";
             this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
             this.tsbtnAdd.Text = "toolStripButton1";
+            this.tsbtnAdd.ToolTipText = "Добавить фильм";
             // 
             // tsbtnChange
             // 
@@ -277,6 +285,7 @@
             this.tsbtnChange.Name = "tsbtnChange";
             this.tsbtnChange.Size = new System.Drawing.Size(23, 22);
             this.tsbtnChange.Text = "toolStripButton1";
+            this.tsbtnChange.ToolTipText = "Изменить фильм";
             // 
             // tsbtnDel
             // 
@@ -286,6 +295,7 @@
             this.tsbtnDel.Name = "tsbtnDel";
             this.tsbtnDel.Size = new System.Drawing.Size(23, 22);
             this.tsbtnDel.Text = "toolStripButton1";
+            this.tsbtnDel.ToolTipText = "Удалить фильм";
             // 
             // tsbtnAdm
             // 
@@ -295,6 +305,8 @@
             this.tsbtnAdm.Name = "tsbtnAdm";
             this.tsbtnAdm.Size = new System.Drawing.Size(23, 22);
             this.tsbtnAdm.Text = "toolStripButton1";
+            this.tsbtnAdm.ToolTipText = "Управление учетными записями";
+            this.tsbtnAdm.Click += new System.EventHandler(this.tsbtnAdm_Click);
             // 
             // tsSearch
             // 
@@ -308,7 +320,6 @@
             this.tsSearch.Size = new System.Drawing.Size(58, 25);
             this.tsSearch.TabIndex = 0;
             this.tsSearch.Text = "toolStrip1";
-            this.tsSearch.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsSearch_ItemClicked_1);
             // 
             // tsbtnLogOut
             // 
@@ -318,6 +329,7 @@
             this.tsbtnLogOut.Name = "tsbtnLogOut";
             this.tsbtnLogOut.Size = new System.Drawing.Size(23, 22);
             this.tsbtnLogOut.Text = "toolStripButton1";
+            this.tsbtnLogOut.ToolTipText = "Выход из учетной записи";
             this.tsbtnLogOut.Click += new System.EventHandler(this.tsbtnLogOut_Click);
             // 
             // tsbtnSearch
@@ -328,6 +340,7 @@
             this.tsbtnSearch.Name = "tsbtnSearch";
             this.tsbtnSearch.Size = new System.Drawing.Size(23, 22);
             this.tsbtnSearch.Text = "toolStripButton1";
+            this.tsbtnSearch.ToolTipText = "Поиск";
             this.tsbtnSearch.Click += new System.EventHandler(this.tsbtnSearch_Click);
             // 
             // dataGridView1
@@ -337,18 +350,28 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewCheckBoxColumn1});
             this.dataGridView1.DataSource = this.viewFilmBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 79);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(503, 412);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(536, 412);
             this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "IDMovie";
+            this.dataGridViewTextBoxColumn5.HeaderText = "IDMovie";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -385,14 +408,6 @@
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "IDMovie";
-            this.dataGridViewTextBoxColumn5.HeaderText = "IDMovie";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
             // viewFilmBindingSource
             // 
             this.viewFilmBindingSource.DataMember = "ViewFilm";
@@ -407,11 +422,22 @@
             // 
             this.viewFilmTableAdapter.ClearBeforeFill = true;
             // 
+            // btnRate
+            // 
+            this.btnRate.Location = new System.Drawing.Point(565, 379);
+            this.btnRate.Name = "btnRate";
+            this.btnRate.Size = new System.Drawing.Size(194, 23);
+            this.btnRate.TabIndex = 31;
+            this.btnRate.Text = "Оценить фильм";
+            this.btnRate.UseVisualStyleBackColor = true;
+            this.btnRate.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 491);
+            this.Controls.Add(this.btnRate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tsAdmin);
             this.Controls.Add(this.tsSearch);
@@ -488,11 +514,12 @@
         private FMDbDataSet fMDbDataSet;
         private System.Windows.Forms.BindingSource viewFilmBindingSource;
         private FMDbDataSetTableAdapters.ViewFilmTableAdapter viewFilmTableAdapter;
+        private System.Windows.Forms.Button btnRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
