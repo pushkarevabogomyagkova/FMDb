@@ -39,6 +39,7 @@ namespace FMDb
 
         private void Main_Load(object sender, EventArgs e)
         {
+
             // TODO: данная строка кода позволяет загрузить данные в таблицу "fMDbDataSet.ViewFilm". При необходимости она может быть перемещена или удалена.
             this.viewFilmTableAdapter.Fill(this.fMDbDataSet.ViewFilm);
             this.Text = "Привет, " + login;
@@ -400,8 +401,68 @@ namespace FMDb
         {
             string sss = dataGridView1.SelectedCells[0].Value.ToString();
             frmRate newRate = new frmRate(sss);
+            newRate.FormClosed+=newRate_FormClosed;
             newRate.Show();
-        }      
+        }
+
+        private void newRate_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            viewFilmTableAdapter.Fill(fMDbDataSet.ViewFilm);
+        }
+
+        private void tsbtnDel_Click(object sender, EventArgs e)
+        {
+            var result = new System.Windows.Forms.DialogResult();
+            result = MessageBox.Show("Вы уверены, что желаете удалить эту запись?", "FMDb: Удаление ",
+                          MessageBoxButtons.YesNo,
+                          MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (dataGridView1.SelectedCells.Count == 6)
+                {
+                    SqlConnection conn = null;
+                    String query = "DELETE Film WHERE [IDMovie]='{0}'";
+                    try
+                    {
+                        conn = new SqlConnection(ConnectionString);
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = string.Format(query, dataGridView1.SelectedCells[0].Value.ToString());
+                            cmd.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("Удалено!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка!");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                        this.viewFilmTableAdapter.Fill(this.fMDbDataSet.ViewFilm);
+                    }
+                }
+                
+            }
+        }
+
+        private void tsbtnChange_Click(object sender, EventArgs e)
+        {
+            frmAdd newChange = new frmAdd("Изменить",login);
+            newChange.Show(); 
+            this.Hide();
+        }
+
+        private void tsbtnAdd_Click(object sender, EventArgs e)
+        {
+            frmAdd newAdd = new frmAdd("Добавить",login);
+            newAdd.Show(); 
+            this.Hide();
+        }
+
+   
 
     }
 }

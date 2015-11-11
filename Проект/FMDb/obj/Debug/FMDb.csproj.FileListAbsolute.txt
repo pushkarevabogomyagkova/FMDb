@@ -23,3 +23,4 @@ C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\bin\Debug\FMDb.
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\bin\Debug\FMDb.pdb
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.Admin.resources
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmRate.resources
+C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmAdd.resources
