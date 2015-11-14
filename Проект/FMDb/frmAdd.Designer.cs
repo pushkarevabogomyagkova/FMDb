@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbYear = new System.Windows.Forms.TextBox();
@@ -36,6 +37,8 @@
             this.btnDelG = new System.Windows.Forms.Button();
             this.btnAddG = new System.Windows.Forms.Button();
             this.cbNameG = new System.Windows.Forms.ComboBox();
+            this.genreBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fMDbDataSet = new FMDb.FMDbDataSet();
             this.tbNameG = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnNewG = new System.Windows.Forms.Button();
@@ -46,6 +49,7 @@
             this.btnDelC = new System.Windows.Forms.Button();
             this.btnAddC = new System.Windows.Forms.Button();
             this.cbC = new System.Windows.Forms.ComboBox();
+            this.countryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbNameC = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnNewC = new System.Windows.Forms.Button();
@@ -56,6 +60,7 @@
             this.btnDelP = new System.Windows.Forms.Button();
             this.btnAddP = new System.Windows.Forms.Button();
             this.cbNameP = new System.Windows.Forms.ComboBox();
+            this.producerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbNameP = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnNewP = new System.Windows.Forms.Button();
@@ -66,6 +71,7 @@
             this.btnDelA = new System.Windows.Forms.Button();
             this.btnAddA = new System.Windows.Forms.Button();
             this.cbNameA = new System.Windows.Forms.ComboBox();
+            this.actorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbNameA = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnNewA = new System.Windows.Forms.Button();
@@ -76,10 +82,28 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.genreTableAdapter = new FMDb.FMDbDataSetTableAdapters.GenreTableAdapter();
+            this.countryTableAdapter = new FMDb.FMDbDataSetTableAdapters.CountryTableAdapter();
+            this.actorsTableAdapter = new FMDb.FMDbDataSetTableAdapters.ActorsTableAdapter();
+            this.producerTableAdapter = new FMDb.FMDbDataSetTableAdapters.ProducerTableAdapter();
+            this.btnPoster = new System.Windows.Forms.Button();
+            this.btnFilm = new System.Windows.Forms.Button();
+            this.btnDesc = new System.Windows.Forms.Button();
+            this.tbPoster = new System.Windows.Forms.TextBox();
+            this.ofdPoster = new System.Windows.Forms.OpenFileDialog();
+            this.tbFilm = new System.Windows.Forms.TextBox();
+            this.tbDesc = new System.Windows.Forms.TextBox();
+            this.ofdFilm = new System.Windows.Forms.OpenFileDialog();
+            this.ofdDesc = new System.Windows.Forms.OpenFileDialog();
             this.gbGenre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.genreBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fMDbDataSet)).BeginInit();
             this.gbCountry.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.countryBindingSource)).BeginInit();
             this.gbProd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.producerBindingSource)).BeginInit();
             this.gbActor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actorsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -101,9 +125,11 @@
             // tbYear
             // 
             this.tbYear.Location = new System.Drawing.Point(224, 9);
+            this.tbYear.MaxLength = 4;
             this.tbYear.Name = "tbYear";
             this.tbYear.Size = new System.Drawing.Size(100, 20);
             this.tbYear.TabIndex = 3;
+            this.tbYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbYear_KeyPress);
             // 
             // label2
             // 
@@ -140,6 +166,7 @@
             this.btnDelG.TabIndex = 8;
             this.btnDelG.Text = "Удалить";
             this.btnDelG.UseVisualStyleBackColor = true;
+            this.btnDelG.Click += new System.EventHandler(this.btnDelG_Click);
             // 
             // btnAddG
             // 
@@ -149,14 +176,27 @@
             this.btnAddG.TabIndex = 7;
             this.btnAddG.Text = "Добавить";
             this.btnAddG.UseVisualStyleBackColor = true;
+            this.btnAddG.Click += new System.EventHandler(this.btnAddG_Click);
             // 
             // cbNameG
             // 
+            this.cbNameG.DataSource = this.genreBindingSource;
+            this.cbNameG.DisplayMember = "Genre";
             this.cbNameG.FormattingEnabled = true;
             this.cbNameG.Location = new System.Drawing.Point(196, 88);
             this.cbNameG.Name = "cbNameG";
             this.cbNameG.Size = new System.Drawing.Size(121, 21);
             this.cbNameG.TabIndex = 6;
+            // 
+            // genreBindingSource
+            // 
+            this.genreBindingSource.DataMember = "Genre";
+            this.genreBindingSource.DataSource = this.fMDbDataSet;
+            // 
+            // fMDbDataSet
+            // 
+            this.fMDbDataSet.DataSetName = "FMDbDataSet";
+            this.fMDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tbNameG
             // 
@@ -240,6 +280,7 @@
             this.btnDelC.TabIndex = 8;
             this.btnDelC.Text = "Удалить";
             this.btnDelC.UseVisualStyleBackColor = true;
+            this.btnDelC.Click += new System.EventHandler(this.btnDelC_Click);
             // 
             // btnAddC
             // 
@@ -249,14 +290,22 @@
             this.btnAddC.TabIndex = 7;
             this.btnAddC.Text = "Добавить";
             this.btnAddC.UseVisualStyleBackColor = true;
+            this.btnAddC.Click += new System.EventHandler(this.btnAddC_Click);
             // 
             // cbC
             // 
+            this.cbC.DataSource = this.countryBindingSource;
+            this.cbC.DisplayMember = "Country";
             this.cbC.FormattingEnabled = true;
             this.cbC.Location = new System.Drawing.Point(196, 88);
             this.cbC.Name = "cbC";
             this.cbC.Size = new System.Drawing.Size(121, 21);
             this.cbC.TabIndex = 6;
+            // 
+            // countryBindingSource
+            // 
+            this.countryBindingSource.DataMember = "Country";
+            this.countryBindingSource.DataSource = this.fMDbDataSet;
             // 
             // tbNameC
             // 
@@ -282,6 +331,7 @@
             this.btnNewC.TabIndex = 3;
             this.btnNewC.Text = "Создать";
             this.btnNewC.UseVisualStyleBackColor = true;
+            this.btnNewC.Click += new System.EventHandler(this.btnNewC_Click);
             // 
             // rbSelC
             // 
@@ -339,6 +389,7 @@
             this.btnDelP.TabIndex = 8;
             this.btnDelP.Text = "Удалить";
             this.btnDelP.UseVisualStyleBackColor = true;
+            this.btnDelP.Click += new System.EventHandler(this.btnDelP_Click);
             // 
             // btnAddP
             // 
@@ -348,14 +399,22 @@
             this.btnAddP.TabIndex = 7;
             this.btnAddP.Text = "Добавить";
             this.btnAddP.UseVisualStyleBackColor = true;
+            this.btnAddP.Click += new System.EventHandler(this.btnAddP_Click);
             // 
             // cbNameP
             // 
+            this.cbNameP.DataSource = this.producerBindingSource;
+            this.cbNameP.DisplayMember = "Name_p";
             this.cbNameP.FormattingEnabled = true;
             this.cbNameP.Location = new System.Drawing.Point(196, 88);
             this.cbNameP.Name = "cbNameP";
             this.cbNameP.Size = new System.Drawing.Size(121, 21);
             this.cbNameP.TabIndex = 6;
+            // 
+            // producerBindingSource
+            // 
+            this.producerBindingSource.DataMember = "Producer";
+            this.producerBindingSource.DataSource = this.fMDbDataSet;
             // 
             // tbNameP
             // 
@@ -381,6 +440,7 @@
             this.btnNewP.TabIndex = 3;
             this.btnNewP.Text = "Создать";
             this.btnNewP.UseVisualStyleBackColor = true;
+            this.btnNewP.Click += new System.EventHandler(this.btnNewP_Click);
             // 
             // rbSelP
             // 
@@ -438,6 +498,7 @@
             this.btnDelA.TabIndex = 8;
             this.btnDelA.Text = "Удалить";
             this.btnDelA.UseVisualStyleBackColor = true;
+            this.btnDelA.Click += new System.EventHandler(this.btnDelA_Click);
             // 
             // btnAddA
             // 
@@ -447,14 +508,22 @@
             this.btnAddA.TabIndex = 7;
             this.btnAddA.Text = "Добавить";
             this.btnAddA.UseVisualStyleBackColor = true;
+            this.btnAddA.Click += new System.EventHandler(this.btnAddA_Click);
             // 
             // cbNameA
             // 
+            this.cbNameA.DataSource = this.actorsBindingSource;
+            this.cbNameA.DisplayMember = "name";
             this.cbNameA.FormattingEnabled = true;
             this.cbNameA.Location = new System.Drawing.Point(196, 88);
             this.cbNameA.Name = "cbNameA";
             this.cbNameA.Size = new System.Drawing.Size(121, 21);
             this.cbNameA.TabIndex = 6;
+            // 
+            // actorsBindingSource
+            // 
+            this.actorsBindingSource.DataMember = "Actors";
+            this.actorsBindingSource.DataSource = this.fMDbDataSet;
             // 
             // tbNameA
             // 
@@ -480,6 +549,7 @@
             this.btnNewA.TabIndex = 3;
             this.btnNewA.Text = "Создать";
             this.btnNewA.UseVisualStyleBackColor = true;
+            this.btnNewA.Click += new System.EventHandler(this.btnNewA_Click);
             // 
             // rbSelA
             // 
@@ -518,6 +588,7 @@
             this.btnCAFilm.Size = new System.Drawing.Size(75, 23);
             this.btnCAFilm.TabIndex = 15;
             this.btnCAFilm.UseVisualStyleBackColor = true;
+            this.btnCAFilm.Click += new System.EventHandler(this.btnCAFilm_Click);
             // 
             // btnCancel
             // 
@@ -532,9 +603,11 @@
             // tbTime
             // 
             this.tbTime.Location = new System.Drawing.Point(463, 9);
+            this.tbTime.MaxLength = 3;
             this.tbTime.Name = "tbTime";
             this.tbTime.Size = new System.Drawing.Size(100, 20);
             this.tbTime.TabIndex = 18;
+            this.tbTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTime_KeyPress);
             // 
             // label7
             // 
@@ -545,11 +618,84 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Продолжительность";
             // 
+            // genreTableAdapter
+            // 
+            this.genreTableAdapter.ClearBeforeFill = true;
+            // 
+            // countryTableAdapter
+            // 
+            this.countryTableAdapter.ClearBeforeFill = true;
+            // 
+            // actorsTableAdapter
+            // 
+            this.actorsTableAdapter.ClearBeforeFill = true;
+            // 
+            // producerTableAdapter
+            // 
+            this.producerTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnPoster
+            // 
+            this.btnPoster.Location = new System.Drawing.Point(241, 347);
+            this.btnPoster.Name = "btnPoster";
+            this.btnPoster.Size = new System.Drawing.Size(75, 23);
+            this.btnPoster.TabIndex = 19;
+            this.btnPoster.Text = "button1";
+            this.btnPoster.UseVisualStyleBackColor = true;
+            this.btnPoster.Click += new System.EventHandler(this.btnPoster_Click);
+            // 
+            // btnFilm
+            // 
+            this.btnFilm.Location = new System.Drawing.Point(241, 376);
+            this.btnFilm.Name = "btnFilm";
+            this.btnFilm.Size = new System.Drawing.Size(75, 23);
+            this.btnFilm.TabIndex = 20;
+            this.btnFilm.Text = "button2";
+            this.btnFilm.UseVisualStyleBackColor = true;
+            this.btnFilm.Click += new System.EventHandler(this.btnFilm_Click);
+            // 
+            // btnDesc
+            // 
+            this.btnDesc.Location = new System.Drawing.Point(241, 405);
+            this.btnDesc.Name = "btnDesc";
+            this.btnDesc.Size = new System.Drawing.Size(75, 23);
+            this.btnDesc.TabIndex = 21;
+            this.btnDesc.Text = "button3";
+            this.btnDesc.UseVisualStyleBackColor = true;
+            this.btnDesc.Click += new System.EventHandler(this.btnDesc_Click);
+            // 
+            // tbPoster
+            // 
+            this.tbPoster.Location = new System.Drawing.Point(15, 349);
+            this.tbPoster.Name = "tbPoster";
+            this.tbPoster.Size = new System.Drawing.Size(203, 20);
+            this.tbPoster.TabIndex = 22;
+            // 
+            // tbFilm
+            // 
+            this.tbFilm.Location = new System.Drawing.Point(15, 379);
+            this.tbFilm.Name = "tbFilm";
+            this.tbFilm.Size = new System.Drawing.Size(203, 20);
+            this.tbFilm.TabIndex = 23;
+            // 
+            // tbDesc
+            // 
+            this.tbDesc.Location = new System.Drawing.Point(15, 408);
+            this.tbDesc.Name = "tbDesc";
+            this.tbDesc.Size = new System.Drawing.Size(203, 20);
+            this.tbDesc.TabIndex = 24;
+            // 
             // frmAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 482);
+            this.Controls.Add(this.tbDesc);
+            this.Controls.Add(this.tbFilm);
+            this.Controls.Add(this.tbPoster);
+            this.Controls.Add(this.btnDesc);
+            this.Controls.Add(this.btnFilm);
+            this.Controls.Add(this.btnPoster);
             this.Controls.Add(this.tbTime);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancel);
@@ -564,14 +710,20 @@
             this.Controls.Add(this.label1);
             this.Name = "frmAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmAdd_Load);
             this.gbGenre.ResumeLayout(false);
             this.gbGenre.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.genreBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fMDbDataSet)).EndInit();
             this.gbCountry.ResumeLayout(false);
             this.gbCountry.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.countryBindingSource)).EndInit();
             this.gbProd.ResumeLayout(false);
             this.gbProd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.producerBindingSource)).EndInit();
             this.gbActor.ResumeLayout(false);
             this.gbActor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actorsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -627,5 +779,23 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox tbTime;
         private System.Windows.Forms.Label label7;
+        private FMDbDataSet fMDbDataSet;
+        private System.Windows.Forms.BindingSource genreBindingSource;
+        private FMDbDataSetTableAdapters.GenreTableAdapter genreTableAdapter;
+        private System.Windows.Forms.BindingSource countryBindingSource;
+        private FMDbDataSetTableAdapters.CountryTableAdapter countryTableAdapter;
+        private System.Windows.Forms.BindingSource actorsBindingSource;
+        private FMDbDataSetTableAdapters.ActorsTableAdapter actorsTableAdapter;
+        private System.Windows.Forms.BindingSource producerBindingSource;
+        private FMDbDataSetTableAdapters.ProducerTableAdapter producerTableAdapter;
+        private System.Windows.Forms.Button btnPoster;
+        private System.Windows.Forms.Button btnFilm;
+        private System.Windows.Forms.Button btnDesc;
+        private System.Windows.Forms.TextBox tbPoster;
+        private System.Windows.Forms.OpenFileDialog ofdPoster;
+        private System.Windows.Forms.TextBox tbFilm;
+        private System.Windows.Forms.TextBox tbDesc;
+        private System.Windows.Forms.OpenFileDialog ofdFilm;
+        private System.Windows.Forms.OpenFileDialog ofdDesc;
     }
 }

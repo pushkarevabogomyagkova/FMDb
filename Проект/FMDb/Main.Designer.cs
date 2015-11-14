@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.filterboxName = new System.Windows.Forms.TextBox();
-            this.filterboxYear = new System.Windows.Forms.TextBox();
-            this.filterboxTime = new System.Windows.Forms.TextBox();
-            this.filterboxRate = new System.Windows.Forms.TextBox();
+            this.filterboxYear1 = new System.Windows.Forms.TextBox();
             this.pictureBoxPoster = new System.Windows.Forms.PictureBox();
             this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
             this.lbGenre = new System.Windows.Forms.ListBox();
@@ -49,6 +47,14 @@
             this.BtnExt = new System.Windows.Forms.Button();
             this.checkView = new System.Windows.Forms.CheckBox();
             this.panelSearch = new System.Windows.Forms.Panel();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.filterboxRate1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.filterboxTime2 = new System.Windows.Forms.TextBox();
+            this.filterboxTime1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.filterboxYear2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tsAdmin = new System.Windows.Forms.ToolStrip();
             this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbtnChange = new System.Windows.Forms.ToolStripButton();
@@ -58,17 +64,17 @@
             this.tsbtnLogOut = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSearch = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.viewFilmBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fMDbDataSet = new FMDb.FMDbDataSet();
-            this.viewFilmTableAdapter = new FMDb.FMDbDataSetTableAdapters.ViewFilmTableAdapter();
-            this.btnRate = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.viewFilmBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fMDbDataSet = new FMDb.FMDbDataSet();
+            this.viewFilmTableAdapter = new FMDb.FMDbDataSetTableAdapters.ViewFilmTableAdapter();
+            this.btnRate = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             this.panelSearch.SuspendLayout();
             this.tsAdmin.SuspendLayout();
@@ -80,48 +86,31 @@
             // 
             // filterboxName
             // 
-            this.filterboxName.Location = new System.Drawing.Point(85, 21);
+            this.filterboxName.Location = new System.Drawing.Point(64, 21);
             this.filterboxName.Name = "filterboxName";
             this.filterboxName.Size = new System.Drawing.Size(100, 20);
-            this.filterboxName.TabIndex = 4;
-            this.filterboxName.TextChanged += new System.EventHandler(this.filterboxName_TextChanged);
+            this.filterboxName.TabIndex = 2;
             // 
-            // filterboxYear
+            // filterboxYear1
             // 
-            this.filterboxYear.Location = new System.Drawing.Point(191, 21);
-            this.filterboxYear.Name = "filterboxYear";
-            this.filterboxYear.Size = new System.Drawing.Size(100, 20);
-            this.filterboxYear.TabIndex = 5;
-            this.filterboxYear.TextChanged += new System.EventHandler(this.filterboxYear_TextChanged);
-            // 
-            // filterboxTime
-            // 
-            this.filterboxTime.Location = new System.Drawing.Point(297, 21);
-            this.filterboxTime.Name = "filterboxTime";
-            this.filterboxTime.Size = new System.Drawing.Size(100, 20);
-            this.filterboxTime.TabIndex = 6;
-            this.filterboxTime.TextChanged += new System.EventHandler(this.filterboxTime_TextChanged);
-            // 
-            // filterboxRate
-            // 
-            this.filterboxRate.Location = new System.Drawing.Point(403, 21);
-            this.filterboxRate.Name = "filterboxRate";
-            this.filterboxRate.Size = new System.Drawing.Size(100, 20);
-            this.filterboxRate.TabIndex = 7;
-            this.filterboxRate.TextChanged += new System.EventHandler(this.filterboxRate_TextChanged);
+            this.filterboxYear1.Location = new System.Drawing.Point(170, 21);
+            this.filterboxYear1.Name = "filterboxYear1";
+            this.filterboxYear1.Size = new System.Drawing.Size(51, 20);
+            this.filterboxYear1.TabIndex = 3;
+            this.filterboxYear1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterboxYear1_KeyPress);
             // 
             // pictureBoxPoster
             // 
-            this.pictureBoxPoster.Location = new System.Drawing.Point(780, 50);
+            this.pictureBoxPoster.Location = new System.Drawing.Point(780, 110);
             this.pictureBoxPoster.Name = "pictureBoxPoster";
-            this.pictureBoxPoster.Size = new System.Drawing.Size(209, 234);
+            this.pictureBoxPoster.Size = new System.Drawing.Size(209, 204);
             this.pictureBoxPoster.TabIndex = 12;
             this.pictureBoxPoster.TabStop = false;
             // 
             // richTextBoxDescription
             // 
             this.richTextBoxDescription.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBoxDescription.Location = new System.Drawing.Point(780, 300);
+            this.richTextBoxDescription.Location = new System.Drawing.Point(780, 330);
             this.richTextBoxDescription.Name = "richTextBoxDescription";
             this.richTextBoxDescription.ReadOnly = true;
             this.richTextBoxDescription.Size = new System.Drawing.Size(209, 126);
@@ -131,7 +120,7 @@
             // lbGenre
             // 
             this.lbGenre.FormattingEnabled = true;
-            this.lbGenre.Location = new System.Drawing.Point(554, 79);
+            this.lbGenre.Location = new System.Drawing.Point(554, 109);
             this.lbGenre.Name = "lbGenre";
             this.lbGenre.Size = new System.Drawing.Size(220, 69);
             this.lbGenre.TabIndex = 14;
@@ -139,7 +128,7 @@
             // lbCountry
             // 
             this.lbCountry.FormattingEnabled = true;
-            this.lbCountry.Location = new System.Drawing.Point(554, 154);
+            this.lbCountry.Location = new System.Drawing.Point(554, 184);
             this.lbCountry.Name = "lbCountry";
             this.lbCountry.Size = new System.Drawing.Size(220, 69);
             this.lbCountry.TabIndex = 15;
@@ -147,7 +136,7 @@
             // lbActors
             // 
             this.lbActors.FormattingEnabled = true;
-            this.lbActors.Location = new System.Drawing.Point(554, 229);
+            this.lbActors.Location = new System.Drawing.Point(554, 259);
             this.lbActors.Name = "lbActors";
             this.lbActors.Size = new System.Drawing.Size(220, 69);
             this.lbActors.TabIndex = 16;
@@ -155,7 +144,7 @@
             // lbProd
             // 
             this.lbProd.FormattingEnabled = true;
-            this.lbProd.Location = new System.Drawing.Point(554, 304);
+            this.lbProd.Location = new System.Drawing.Point(554, 334);
             this.lbProd.Name = "lbProd";
             this.lbProd.Size = new System.Drawing.Size(220, 69);
             this.lbProd.TabIndex = 17;
@@ -172,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 5);
+            this.label2.Location = new System.Drawing.Point(61, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 19;
@@ -181,7 +170,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(188, 5);
+            this.label3.Location = new System.Drawing.Point(167, 5);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 20;
@@ -190,7 +179,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 5);
+            this.label4.Location = new System.Drawing.Point(297, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 21;
@@ -199,7 +188,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(400, 5);
+            this.label5.Location = new System.Drawing.Point(428, 4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 22;
@@ -208,20 +197,20 @@
             // btnPlay
             // 
             this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnPlay.Location = new System.Drawing.Point(565, 411);
+            this.btnPlay.Location = new System.Drawing.Point(565, 441);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(194, 51);
-            this.btnPlay.TabIndex = 23;
+            this.btnPlay.TabIndex = 12;
             this.btnPlay.Text = "►";
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // BtnExt
             // 
-            this.BtnExt.Location = new System.Drawing.Point(780, 432);
+            this.BtnExt.Location = new System.Drawing.Point(780, 462);
             this.BtnExt.Name = "BtnExt";
             this.BtnExt.Size = new System.Drawing.Size(209, 30);
-            this.BtnExt.TabIndex = 25;
+            this.BtnExt.TabIndex = 13;
             this.BtnExt.Text = "Выход";
             this.BtnExt.UseVisualStyleBackColor = true;
             this.BtnExt.Click += new System.EventHandler(this.BtnExt_Click);
@@ -229,30 +218,105 @@
             // checkView
             // 
             this.checkView.AutoSize = true;
-            this.checkView.Location = new System.Drawing.Point(507, 23);
+            this.checkView.Location = new System.Drawing.Point(569, 22);
             this.checkView.Name = "checkView";
             this.checkView.Size = new System.Drawing.Size(87, 17);
-            this.checkView.TabIndex = 26;
+            this.checkView.TabIndex = 8;
             this.checkView.Text = "просмотрен";
             this.checkView.UseVisualStyleBackColor = true;
-            this.checkView.CheckStateChanged += new System.EventHandler(this.checkView_CheckedChanged);
             // 
             // panelSearch
             // 
+            this.panelSearch.Controls.Add(this.btnClear);
+            this.panelSearch.Controls.Add(this.filterboxRate1);
+            this.panelSearch.Controls.Add(this.label7);
+            this.panelSearch.Controls.Add(this.filterboxTime2);
+            this.panelSearch.Controls.Add(this.filterboxTime1);
+            this.panelSearch.Controls.Add(this.label6);
+            this.panelSearch.Controls.Add(this.filterboxYear2);
+            this.panelSearch.Controls.Add(this.button1);
             this.panelSearch.Controls.Add(this.label1);
             this.panelSearch.Controls.Add(this.filterboxName);
             this.panelSearch.Controls.Add(this.checkView);
             this.panelSearch.Controls.Add(this.label5);
-            this.panelSearch.Controls.Add(this.filterboxYear);
+            this.panelSearch.Controls.Add(this.filterboxYear1);
             this.panelSearch.Controls.Add(this.label4);
-            this.panelSearch.Controls.Add(this.filterboxTime);
             this.panelSearch.Controls.Add(this.label3);
-            this.panelSearch.Controls.Add(this.filterboxRate);
             this.panelSearch.Controls.Add(this.label2);
             this.panelSearch.Location = new System.Drawing.Point(12, 29);
             this.panelSearch.Name = "panelSearch";
-            this.panelSearch.Size = new System.Drawing.Size(597, 44);
+            this.panelSearch.Size = new System.Drawing.Size(836, 44);
             this.panelSearch.TabIndex = 29;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(753, 16);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 10;
+            this.btnClear.Text = "Сброс";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // filterboxRate1
+            // 
+            this.filterboxRate1.Location = new System.Drawing.Point(431, 21);
+            this.filterboxRate1.Name = "filterboxRate1";
+            this.filterboxRate1.Size = new System.Drawing.Size(105, 20);
+            this.filterboxRate1.TabIndex = 7;
+            this.filterboxRate1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterboxRate1_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(355, 24);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(10, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "-";
+            // 
+            // filterboxTime2
+            // 
+            this.filterboxTime2.Location = new System.Drawing.Point(371, 21);
+            this.filterboxTime2.Name = "filterboxTime2";
+            this.filterboxTime2.Size = new System.Drawing.Size(51, 20);
+            this.filterboxTime2.TabIndex = 6;
+            this.filterboxTime2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterboxTime2_KeyPress);
+            // 
+            // filterboxTime1
+            // 
+            this.filterboxTime1.Location = new System.Drawing.Point(298, 21);
+            this.filterboxTime1.Name = "filterboxTime1";
+            this.filterboxTime1.Size = new System.Drawing.Size(51, 20);
+            this.filterboxTime1.TabIndex = 5;
+            this.filterboxTime1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterboxTime1_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(227, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(10, 13);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "-";
+            // 
+            // filterboxYear2
+            // 
+            this.filterboxYear2.Location = new System.Drawing.Point(240, 21);
+            this.filterboxYear2.Name = "filterboxYear2";
+            this.filterboxYear2.Size = new System.Drawing.Size(51, 20);
+            this.filterboxYear2.TabIndex = 4;
+            this.filterboxYear2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterboxYear2_KeyPress);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(672, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Поиск";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // tsAdmin
             // 
@@ -263,9 +327,9 @@
             this.tsbtnChange,
             this.tsbtnDel,
             this.tsbtnAdm});
-            this.tsAdmin.Location = new System.Drawing.Point(67, 1);
+            this.tsAdmin.Location = new System.Drawing.Point(70, 1);
             this.tsAdmin.Name = "tsAdmin";
-            this.tsAdmin.Size = new System.Drawing.Size(104, 25);
+            this.tsAdmin.Size = new System.Drawing.Size(135, 25);
             this.tsAdmin.TabIndex = 0;
             this.tsAdmin.Text = "toolStrip2";
             // 
@@ -288,7 +352,7 @@
             this.tsbtnChange.Name = "tsbtnChange";
             this.tsbtnChange.Size = new System.Drawing.Size(23, 22);
             this.tsbtnChange.Text = "toolStripButton1";
-            this.tsbtnChange.ToolTipText = "Изменить фильм";
+            this.tsbtnChange.ToolTipText = "Изменить информацию о фильме";
             this.tsbtnChange.Click += new System.EventHandler(this.tsbtnChange_Click);
             // 
             // tsbtnDel
@@ -320,7 +384,7 @@
             this.tsSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnLogOut,
             this.tsbtnSearch});
-            this.tsSearch.Location = new System.Drawing.Point(9, 1);
+            this.tsSearch.Location = new System.Drawing.Point(12, 1);
             this.tsSearch.Name = "tsSearch";
             this.tsSearch.Size = new System.Drawing.Size(58, 25);
             this.tsSearch.TabIndex = 0;
@@ -360,15 +424,58 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewCheckBoxColumn1,
-            this.Column1});
+            this.dataGridViewCheckBoxColumn1});
             this.dataGridView1.DataSource = this.viewFilmBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 79);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(536, 412);
-            this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.TabIndex = 1;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "IDMovie";
+            this.dataGridViewTextBoxColumn5.HeaderText = "IDMovie";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Название";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Длительность";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Длительность";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Год";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Год";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Оценка";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Оценка";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Просмотрен";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Просмотрен";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             // 
             // viewFilmBindingSource
             // 
@@ -386,61 +493,30 @@
             // 
             // btnRate
             // 
-            this.btnRate.Location = new System.Drawing.Point(565, 379);
+            this.btnRate.Location = new System.Drawing.Point(565, 409);
             this.btnRate.Name = "btnRate";
             this.btnRate.Size = new System.Drawing.Size(194, 23);
-            this.btnRate.TabIndex = 31;
+            this.btnRate.TabIndex = 11;
             this.btnRate.Text = "Оценить фильм";
             this.btnRate.UseVisualStyleBackColor = true;
             this.btnRate.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridViewTextBoxColumn5
+            // btnUp
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "IDMovie";
-            this.dataGridViewTextBoxColumn5.HeaderText = "IDMovie";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Название";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Название";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Длительность";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Длительность";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Год";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Год";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Оценка";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Оценка";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Просмотрен";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Просмотрен";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
+            this.btnUp.Location = new System.Drawing.Point(555, 80);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(219, 23);
+            this.btnUp.TabIndex = 30;
+            this.btnUp.Text = "Пометить как непросмотренный";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 491);
+            this.ClientSize = new System.Drawing.Size(999, 596);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnRate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tsAdmin);
@@ -477,9 +553,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox filterboxName;
-        private System.Windows.Forms.TextBox filterboxYear;
-        private System.Windows.Forms.TextBox filterboxTime;
-        private System.Windows.Forms.TextBox filterboxRate;
+        private System.Windows.Forms.TextBox filterboxYear1;
         private System.Windows.Forms.PictureBox pictureBoxPoster;
         private System.Windows.Forms.RichTextBox richTextBoxDescription;
         private System.Windows.Forms.ListBox lbGenre;
@@ -526,6 +600,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox filterboxRate1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox filterboxTime2;
+        private System.Windows.Forms.TextBox filterboxTime1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox filterboxYear2;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnUp;
     }
 }

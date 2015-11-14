@@ -31,7 +31,7 @@ namespace FMDb
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void bntRegist_Click(object sender, EventArgs e)
@@ -66,7 +66,6 @@ namespace FMDb
                         cmd.CommandText = string.Format(query, tbNewLog.Text, tbNewPass.Text);
                         cmd.ExecuteNonQuery();
                     }
-                    MessageBox.Show("Вы зарегестрированы");
                 }
                 catch (Exception ex)
                 {

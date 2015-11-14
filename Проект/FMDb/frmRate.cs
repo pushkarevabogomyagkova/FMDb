@@ -96,7 +96,7 @@ namespace FMDb
             if (rbtn7.Checked) { sum1 += 7; count1++; }
             if (rbtn8.Checked) { sum1 += 8; count1++; }
             if (rbtn9.Checked) { sum1 += 9; count1++; }
-            rate1 = Math.Round(sum1 / count1,2);
+            rate1 = Math.Round(sum1 / count1,0);
                 SqlConnection conn = null;
                 String query = "UPDATE [Film] SET [sum]='{0}',[count]='{1}',[rate]='{2}' WHERE [IDMovie]='{3}'";
                 try

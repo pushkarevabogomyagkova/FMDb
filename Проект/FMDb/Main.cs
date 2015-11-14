@@ -21,7 +21,17 @@ namespace FMDb
         string[] idcountry = new string[35];
         string[] idactors = new string[35];
         string[] idprod = new string[35];
-         public string ConnectionString { get; set; }
+        string[] genres = new string[35];
+        string[] country = new string[35];
+        string[] actors = new string[35];
+        string[] prod = new string[35];
+        string name;
+        string year;
+        string time;
+        string poster;
+        string film;
+        string dd;
+        public string ConnectionString { get; set; }
 
         public Main(bool _adm, string _login)
         {
@@ -47,18 +57,59 @@ namespace FMDb
             if (!adm)
             {
                 tsAdmin.Visible = false;
-                       }
-
+            }
+            try
+            {
+                string[] idfilm=new string[35];
+                SqlConnection sconn = new SqlConnection(ConnectionString);
+                using (sconn)
+                {
+                    sconn.Open();
+                    SqlCommand scommand = new SqlCommand();
+                    scommand.Connection = sconn;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    SqlDataReader dr = scommand.ExecuteReader();
+                    int i = 0;
+                    while (dr.Read())
+                    {
+                        idfilm[i] = dr[0].ToString();
+                        i++;
+                    }
+                    dr.Close();
+                } sconn.Close();
+                for(int i=0; i<35; i++)
+                {
+                    if(idfilm!=null)
+                    {
+                        if(idfilm[i]!=null)
+                        {
+                            int j=0;
+                            while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
+                            { j++; }
+                            dataGridView1.Rows[j].Cells[5].Value = true;
+                        }
+                    
+                    }
+                }
+            }
+            catch { }
         }
 
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void tsbtnSearch_Click(object sender, EventArgs e)
         {
+            if (panelSearch.Visible)
+            {
+                filterboxRate1.Text = "";
+                filterboxName.Text = "";
+                filterboxTime1.Text = "";
+                filterboxTime2.Text = "";
+                filterboxYear1.Text = "";
+                filterboxYear2.Text = "";
+                checkView.Checked = false;
+            }
             panelSearch.Visible = !panelSearch.Visible;
+            
         }
 
         private void BtnExt_Click(object sender, EventArgs e)
@@ -101,7 +152,8 @@ namespace FMDb
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
-        {
+        {   
+
             try
             {
                 SqlConnection sconn = new SqlConnection(ConnectionString);
@@ -114,14 +166,70 @@ namespace FMDb
                     SqlDataReader dr = scommand.ExecuteReader();
                     while (dr.Read())
                     {
-                        Process.Start(dr[0].ToString());
+                        film = dr[0].ToString();
+                        Process.Start(film);
+                    }
+                    dr.Close();
+                } 
+                sconn.Close();
+            }
+            catch (Exception ex)
+            {  }
+
+            SqlConnection conn = null;
+            string query = "INSERT INTO [View] VALUES ('{0}','{1}')";
+            try
+            {
+                conn = new SqlConnection(ConnectionString);
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = string.Format(query, Convert.ToInt32(dataGridView1.SelectedCells[0].Value.ToString()), login);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {}
+            finally
+            {
+                conn.Close();
+            }
+            try
+            {
+                string[] idfilm = new string[35];
+                SqlConnection sconn = new SqlConnection(ConnectionString);
+                using (sconn)
+                {
+                    sconn.Open();
+                    SqlCommand scommand = new SqlCommand();
+                    scommand.Connection = sconn;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    SqlDataReader dr = scommand.ExecuteReader();
+                    int i = 0;
+                    while (dr.Read())
+                    {
+                        idfilm[i] = dr[0].ToString();
+                        i++;
                     }
                     dr.Close();
                 } sconn.Close();
+                for (int i = 0; i < 35; i++)
+                {
+                    if (idfilm != null)
+                    {
+                        if (idfilm[i] != null)
+                        {
+                            int j = 0;
+                            while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
+                            { j++; }
+                            dataGridView1.Rows[j].Cells[5].Value = true;
+                        }
 
+                    }
+                }
             }
-            catch (Exception ex)
-            { pictureBoxPoster.Image = null; }
+            catch { }
         }
 
         private void tsbtnAdm_Click(object sender, EventArgs e)
@@ -130,36 +238,8 @@ namespace FMDb
             newAdmin.Show(); 
         }
 
-        private void filterboxName_TextChanged(object sender, EventArgs e)
-        {
-            viewFilmBindingSource.Filter = "[Название] like '%" + filterboxName.Text + "%'";
-        }
-
-        private void filterboxYear_TextChanged(object sender, EventArgs e)
-        {
-                viewFilmBindingSource.Filter = "[Год] like '%" + filterboxYear.Text + "%'";
-            
-        }
-
-        private void filterboxTime_TextChanged(object sender, EventArgs e)
-        {
-                viewFilmBindingSource.Filter = "[Длительность] like '%" + filterboxTime.Text + "%'";
-        }
-
-        private void filterboxRate_TextChanged(object sender, EventArgs e)
-        {
-                viewFilmBindingSource.Filter = "[Оценка] like '%" + filterboxRate.Text + "%'";
-        }
-
-        private void checkView_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkView.Checked) viewFilmBindingSource.Filter = "[Просмотрен] = True"; 
-            else viewFilmBindingSource.Filter = "[Просмотрен] = True OR [Просмотрен] = False";
-        }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            lbGenre.Items.Clear();
+        {   lbGenre.Items.Clear();
             lbCountry.Items.Clear();
             lbActors.Items.Clear();
             lbProd.Items.Clear();
@@ -198,6 +278,7 @@ namespace FMDb
                             {
                                 scommand.CommandText = @"SELECT [Genre] from [Genre] where [IDG]=" + idgenres[y];
                                 SqlDataReader dr = scommand.ExecuteReader();
+                                                          
                                 while (dr.Read())
                                 {
                                     lbGenre.Items.Add(dr[0].ToString());
@@ -245,6 +326,7 @@ namespace FMDb
                             {
                                 scommand.CommandText = @"SELECT [Country] from [Country] where [IDC]=" + idcountry[y];
                                 SqlDataReader dr = scommand.ExecuteReader();
+                                                            
                                 while (dr.Read())
                                 {
                                     lbCountry.Items.Add(dr[0].ToString());
@@ -291,6 +373,7 @@ namespace FMDb
                             {
                                 scommand.CommandText = @"SELECT [name] from [Actors] where [IDact]=" + idactors[y];
                                 SqlDataReader dr = scommand.ExecuteReader();
+                                                        
                                 while (dr.Read())
                                 {
                                     lbActors.Items.Add(dr[0].ToString());
@@ -340,6 +423,7 @@ namespace FMDb
                             {
                                 scommand.CommandText = @"SELECT [Name_p] from [Producer] where [IDprod]=" + idprod[y];
                                 SqlDataReader dr = scommand.ExecuteReader();
+                                                          
                                 while (dr.Read())
                                 {
                                     lbProd.Items.Add(dr[0].ToString());
@@ -366,7 +450,8 @@ namespace FMDb
                         SqlDataReader dr = scommand.ExecuteReader();
                         while (dr.Read())
                         {
-                            richTextBoxDescription.LoadFile(dr[0].ToString());
+                            dd = dr[0].ToString();
+                            richTextBoxDescription.LoadFile(dd);
                         }
                         dr.Close();                                     
                     } sconn.Close();
@@ -388,7 +473,8 @@ namespace FMDb
                     SqlDataReader dr = scommand.ExecuteReader();
                     while (dr.Read())
                     {
-                        pictureBoxPoster.Load(dr[0].ToString());
+                        poster = dr[0].ToString();
+                        pictureBoxPoster.Load(poster);
                     }
                     dr.Close();
                 } sconn.Close();
@@ -408,6 +494,41 @@ namespace FMDb
         private void newRate_FormClosed(object sender, FormClosedEventArgs e)
         {
             viewFilmTableAdapter.Fill(fMDbDataSet.ViewFilm);
+            try
+            {
+                string[] idfilm = new string[35];
+                SqlConnection sconn = new SqlConnection(ConnectionString);
+                using (sconn)
+                {
+                    sconn.Open();
+                    SqlCommand scommand = new SqlCommand();
+                    scommand.Connection = sconn;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    SqlDataReader dr = scommand.ExecuteReader();
+                    int i = 0;
+                    while (dr.Read())
+                    {
+                        idfilm[i] = dr[0].ToString();
+                        i++;
+                    }
+                    dr.Close();
+                } sconn.Close();
+                for (int i = 0; i < 35; i++)
+                {
+                    if (idfilm != null)
+                    {
+                        if (idfilm[i] != null)
+                        {
+                            int j = 0;
+                            while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
+                            { j++; }
+                            dataGridView1.Rows[j].Cells[5].Value = true;
+                        }
+
+                    }
+                }
+            }
+            catch { }
         }
 
         private void tsbtnDel_Click(object sender, EventArgs e)
@@ -432,7 +553,6 @@ namespace FMDb
                             cmd.CommandText = string.Format(query, dataGridView1.SelectedCells[0].Value.ToString());
                             cmd.ExecuteNonQuery();
                         }
-                        MessageBox.Show("Удалено!");
                     }
                     catch (Exception ex)
                     {
@@ -450,16 +570,176 @@ namespace FMDb
 
         private void tsbtnChange_Click(object sender, EventArgs e)
         {
-            frmAdd newChange = new frmAdd("Изменить",login);
+            name = dataGridView1.SelectedCells[1].Value.ToString();
+            year = dataGridView1.SelectedCells[3].Value.ToString();
+            time = dataGridView1.SelectedCells[2].Value.ToString();
+            int i = 0;
+            while (i < lbGenre.Items.Count)
+            {
+                genres[i] = lbGenre.Items[i].ToString();
+                i++;
+            }
+            i = 0;
+            while (i < lbCountry.Items.Count)
+            {
+                country[i] = lbCountry.Items[i].ToString();
+                i++;
+            }
+            i = 0;
+            while (i < lbActors.Items.Count)
+            {
+                actors[i] = lbActors.Items[i].ToString();
+                i++;
+            }
+            i = 0;
+            while (i < lbProd.Items.Count)
+            {
+                prod[i] = lbProd.Items[i].ToString();
+                i++;
+            }
+            frmAdd newChange = new frmAdd("Изменить", login,dataGridView1.SelectedCells[0].Value.ToString(), name, year, time, genres, country, actors, prod, poster, film, dd);
             newChange.Show(); 
             this.Hide();
         }
 
         private void tsbtnAdd_Click(object sender, EventArgs e)
-        {
-            frmAdd newAdd = new frmAdd("Добавить",login);
+        {            
+            frmAdd newAdd = new frmAdd("Добавить",login,"","","","",null,null,null,null,"","","");
             newAdd.Show(); 
             this.Hide();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string str;
+            string str1="";
+            string str2="";
+            string str3="";
+            string str4="";
+            string str5="";
+            if (filterboxName.Text!="")
+            {
+                str1 = "[Название] like '%" + filterboxName.Text + "%' AND ";
+            }
+            
+            if (filterboxYear1.Text != "" && filterboxYear2.Text!="" )
+            {
+                str2 = "[Год]>= " + Convert.ToInt32(filterboxYear1.Text) + " AND [Год]<= " + Convert.ToInt32(filterboxYear2.Text) + " AND ";
+            }
+            else
+                if (filterboxYear2.Text == "" && filterboxYear1.Text != "")
+                {
+                    str2 = "[Год]=" + Convert.ToInt32(filterboxYear1.Text) + " AND ";
+                }
+                else
+                    if (filterboxYear1.Text == "" && filterboxYear2.Text != "")
+                    {
+                        str2 = "[Год]=" + Convert.ToInt32(filterboxYear2.Text) + " AND ";
+                    }
+                    
+            if (filterboxTime1.Text != "" && filterboxTime2.Text != "")
+            {
+                str3 = "[Длительность]>= " + Convert.ToInt32(filterboxTime1.Text) + " AND [Длительность]<= " + Convert.ToInt32(filterboxTime2.Text)+" AND ";
+            }
+            else
+                if (filterboxTime2.Text == "" && filterboxTime1.Text != "")
+                {
+                    str2 = "[Длительность]=" + Convert.ToInt32(filterboxTime1.Text) + " AND ";
+                }
+                else
+                    if (filterboxTime1.Text == "" && filterboxTime2.Text != "")
+                    {
+                        str2 = "[Длительность]=" + Convert.ToInt32(filterboxTime2.Text) + " AND ";
+                    }
+
+            if (filterboxRate1.Text != "" )
+            {
+                str4 = "[Оценка] like '%" + filterboxRate1.Text+"%' AND ";
+            }
+            if (checkView.Checked)
+            {
+                str5 = "[Просмотрен] = true AND";
+            }
+            str = str1 + str2 + str3 + str4 + str5 + " true";
+            viewFilmBindingSource.Filter =str;
+        }
+
+        private void filterboxYear1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void filterboxYear2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void filterboxTime1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void filterboxTime2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void filterboxRate1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            viewFilmBindingSource.Filter = "true";
+            filterboxRate1.Text = "";
+            filterboxName.Text = "";
+            filterboxTime1.Text = "";
+            filterboxTime2.Text = "";
+            filterboxYear1.Text = "";
+            filterboxYear2.Text = "";
+            checkView.Checked = false;
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            dataGridView1.SelectedCells[5].Value = false;
+            SqlConnection conn = null;
+                    String query = "DELETE [View] WHERE [IDf]='{0}' AND [Log]='{1}'";
+                    try
+                    {
+                        conn = new SqlConnection(ConnectionString);
+                        conn.Open();
+                        using (var cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = string.Format(query, dataGridView1.SelectedCells[0].Value.ToString(), login);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка!");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
         }
 
    
