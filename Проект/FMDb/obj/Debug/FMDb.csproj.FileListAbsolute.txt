@@ -4,7 +4,6 @@ C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\F
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\bin\Debug\FMDb.exe
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\bin\Debug\FMDb.pdb
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.csprojResolveAssemblyReference.cache
-C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmAdmin.resources
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmLogIn.resources
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmReg.resources
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.Main.resources
@@ -24,3 +23,6 @@ C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\bin\Debug\FMDb.
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.Admin.resources
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmRate.resources
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmAdd.resources
+C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.Admin.resources
+C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmAdd.resources
+C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmRate.resources

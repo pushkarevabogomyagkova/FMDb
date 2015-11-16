@@ -107,13 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="FMDbDataSet.xsc">
       <DependentUpon>FMDbDataSet.xsd</DependentUpon>
     </None>
@@ -129,6 +125,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -137,6 +138,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\del.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filmstrip-1png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filmstrip-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\58534_in-the-directors-chair-david-lynch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Film-Reel-Wallpaper-1_kopia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-vector-blue-star-exploding-background_133542_Blue_Star_Exploding_Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Film-Reel-Wallpaper-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Film-Reel-Wallpaper-1_kopia1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Film-Reel-Wallpaper-1_kopia %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Безимени-1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

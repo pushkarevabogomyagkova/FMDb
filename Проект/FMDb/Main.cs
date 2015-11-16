@@ -40,7 +40,7 @@ namespace FMDb
             login = _login;
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "GALINA-PC",
+                DataSource = "SUPER_PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -52,7 +52,7 @@ namespace FMDb
 
             // TODO: данная строка кода позволяет загрузить данные в таблицу "fMDbDataSet.ViewFilm". При необходимости она может быть перемещена или удалена.
             this.viewFilmTableAdapter.Fill(this.fMDbDataSet.ViewFilm);
-            this.Text = "Привет, " + login;
+            this.Text = "Добро пожаловать, " + login+". ";
             panelSearch.Visible = false;
             if (!adm)
             {
@@ -562,6 +562,37 @@ namespace FMDb
                     {
                         conn.Close();
                         this.viewFilmTableAdapter.Fill(this.fMDbDataSet.ViewFilm);
+                        string[] idfilm = new string[35];
+                        SqlConnection sconn = new SqlConnection(ConnectionString);
+                        using (sconn)
+                        {
+                            sconn.Open();
+                            SqlCommand scommand = new SqlCommand();
+                            scommand.Connection = sconn;
+                            scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                            SqlDataReader dr = scommand.ExecuteReader();
+                            int i = 0;
+                            while (dr.Read())
+                            {
+                                idfilm[i] = dr[0].ToString();
+                                i++;
+                            }
+                            dr.Close();
+                        } sconn.Close();
+                        for (int i = 0; i < 35; i++)
+                        {
+                            if (idfilm != null)
+                            {
+                                if (idfilm[i] != null)
+                                {
+                                    int j = 0;
+                                    while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
+                                    { j++; }
+                                    dataGridView1.Rows[j].Cells[5].Value = true;
+                                }
+
+                            }
+                        }
                     }
                 }
                 

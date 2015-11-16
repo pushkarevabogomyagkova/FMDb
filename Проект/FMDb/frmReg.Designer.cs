@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReg));
             this.tbNewLog = new System.Windows.Forms.TextBox();
             this.tbNewPass = new System.Windows.Forms.TextBox();
             this.bntRegist = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             // 
             // tbNewLog
             // 
-            this.tbNewLog.Location = new System.Drawing.Point(68, 50);
+            this.tbNewLog.Location = new System.Drawing.Point(88, 85);
             this.tbNewLog.Name = "tbNewLog";
             this.tbNewLog.Size = new System.Drawing.Size(168, 20);
             this.tbNewLog.TabIndex = 0;
@@ -49,7 +50,7 @@
             // 
             // tbNewPass
             // 
-            this.tbNewPass.Location = new System.Drawing.Point(68, 90);
+            this.tbNewPass.Location = new System.Drawing.Point(88, 124);
             this.tbNewPass.Name = "tbNewPass";
             this.tbNewPass.Size = new System.Drawing.Size(168, 20);
             this.tbNewPass.TabIndex = 1;
@@ -58,7 +59,7 @@
             // bntRegist
             // 
             this.bntRegist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bntRegist.Location = new System.Drawing.Point(48, 127);
+            this.bntRegist.Location = new System.Drawing.Point(44, 163);
             this.bntRegist.Name = "bntRegist";
             this.bntRegist.Size = new System.Drawing.Size(123, 23);
             this.bntRegist.TabIndex = 2;
@@ -70,7 +71,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCancel.Location = new System.Drawing.Point(177, 127);
+            this.btnCancel.Location = new System.Drawing.Point(181, 163);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -82,7 +83,7 @@
             // 
             this.lblEL.AutoSize = true;
             this.lblEL.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblEL.Location = new System.Drawing.Point(242, 53);
+            this.lblEL.Location = new System.Drawing.Point(89, 108);
             this.lblEL.Name = "lblEL";
             this.lblEL.Size = new System.Drawing.Size(0, 13);
             this.lblEL.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             this.lblEP.AutoSize = true;
             this.lblEP.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblEP.Location = new System.Drawing.Point(242, 93);
+            this.lblEP.Location = new System.Drawing.Point(89, 147);
             this.lblEP.Name = "lblEP";
             this.lblEP.Size = new System.Drawing.Size(0, 13);
             this.lblEP.TabIndex = 5;
@@ -99,8 +100,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(21, 53);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(41, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 6;
@@ -109,8 +112,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(15, 93);
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(35, 127);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 7;
@@ -119,10 +124,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(49, 18);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(52, 49);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 13);
+            this.label3.Size = new System.Drawing.Size(195, 15);
             this.label3.TabIndex = 8;
             this.label3.Text = "Придумайте логин и пароль";
             // 
@@ -130,8 +137,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::FMDb.Properties.Resources.filmstrip_background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(367, 162);
+            this.ClientSize = new System.Drawing.Size(299, 239);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -142,7 +151,8 @@
             this.Controls.Add(this.tbNewPass);
             this.Controls.Add(this.tbNewLog);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

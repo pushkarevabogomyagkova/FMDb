@@ -34,7 +34,7 @@ namespace FMDb
 
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "GALINA-PC",
+                DataSource = "SUPER_PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -57,13 +57,11 @@ namespace FMDb
             tbName.Text = _name;
             tbYear.Text = _year;
             tbTime.Text = _time;
-           
-            }
+        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Main newMain = new Main(true, log);
-            newMain.Show(); this.Hide();
+             this.Close();
         }
 
         private void btnNewG_Click(object sender, EventArgs e)
@@ -94,8 +92,8 @@ namespace FMDb
                     {
                         genreTableAdapter.Insert(tbNameG.Text);
                         this.genreTableAdapter.Fill(this.fMDbDataSet.Genre);
-                        cbNameG.SelectedIndex = cbNameG.Items.Count - 1;
-                        rbtnSel.Checked = true;
+                        cbG.SelectedIndex = cbG.Items.Count - 1;
+                        rbtnSelG.Checked = true;
                     }
                 } sconn.Close();
                 tbNameG.Text = "";
@@ -106,6 +104,19 @@ namespace FMDb
 
         private void frmAdd_Load(object sender, EventArgs e)
         {
+            
+            rbtnSelG.Checked = true;
+            rbtnSelA.Checked = true;
+            rbtnSelC.Checked = true;
+            rbtnSelP.Checked = true;
+            btnNewG.Enabled = false;
+            tbNameG.Enabled = false;
+            btnNewA.Enabled = false;
+            tbNameA.Enabled = false;
+            btnNewC.Enabled = false;
+            tbNameC.Enabled = false;
+            btnNewP.Enabled = false;
+            tbNameP.Enabled = false;
             // TODO: данная строка кода позволяет загрузить данные в таблицу "fMDbDataSet.Producer". При необходимости она может быть перемещена или удалена.
             this.producerTableAdapter.Fill(this.fMDbDataSet.Producer);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "fMDbDataSet.Actors". При необходимости она может быть перемещена или удалена.
@@ -128,30 +139,32 @@ namespace FMDb
             if (lbC.Items.Count > 0) lbC.SelectedIndex = 0;
             if (lbA.Items.Count > 0) lbA.SelectedIndex = 0;
             if (lbP.Items.Count > 0) lbP.SelectedIndex = 0;
-            rbtnSel.Checked=true;
-            rbSelC.Checked = true;
-            rbSelA.Checked = true;
-            rbSelP.Checked = true;
-            SqlConnection sconn = null;
-            sconn = new SqlConnection(ConnectionString);
-            using (sconn)
-            {
-                sconn.Open();
-                var command = new SqlCommand
+            rbtnSelG.Checked=true;
+            rbtnSelC.Checked = true;
+            rbtnSelA.Checked = true;
+            rbtnSelP.Checked = true;
+            if (btnCAFilm.Text == "Изменить")
+            {   SqlConnection sconn = null;
+                sconn = new SqlConnection(ConnectionString);
+                using (sconn)
                 {
-                    Connection = sconn,
-                    CommandText = "SELECT [Путь к фильму],[Путь к постеру],[Путь к описанию] FROM [Film] WHERE IDMovie = " + Convert.ToInt32(idf),
-                    CommandType = CommandType.Text
-                };
-                SqlDataReader dr = command.ExecuteReader();
-                while (dr.Read())
-                {
-                    tbFilm.Text = dr[0].ToString();
-                    tbPoster.Text = dr[1].ToString();
-                    tbDesc.Text = dr[2].ToString();
-                }
-                dr.Close();
-            } sconn.Close();
+                    sconn.Open();
+                    var command = new SqlCommand
+                    {
+                        Connection = sconn,
+                        CommandText = "SELECT [Путь к фильму],[Путь к постеру],[Путь к описанию] FROM [Film] WHERE IDMovie = " + Convert.ToInt32(idf),
+                        CommandType = CommandType.Text
+                    };
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbFilm.Text = dr[0].ToString();
+                        tbPoster.Text = dr[1].ToString();
+                        tbDesc.Text = dr[2].ToString();
+                    }
+                    dr.Close();
+                } sconn.Close();
+            }
         }
 
         private void btnNewC_Click(object sender, EventArgs e)
@@ -183,7 +196,7 @@ namespace FMDb
                         countryTableAdapter.Insert(tbNameC.Text);
                         this.countryTableAdapter.Fill(this.fMDbDataSet.Country);
                         cbC.SelectedIndex = cbC.Items.Count - 1;
-                        rbSelC.Checked = true;
+                        rbtnSelC.Checked = true;
                     }
                 } sconn.Close();
                 tbNameC.Text = "";
@@ -220,8 +233,8 @@ namespace FMDb
                     {
                         actorsTableAdapter.Insert(tbNameA.Text);
                         this.actorsTableAdapter.Fill(this.fMDbDataSet.Actors);
-                        cbNameA.SelectedIndex = cbNameA.Items.Count - 1;
-                        rbSelA.Checked = true;
+                        cbA.SelectedIndex = cbA.Items.Count - 1;
+                        rbtnSelA.Checked = true;
                     }
                 } sconn.Close();
                 tbNameA.Text = "";
@@ -258,8 +271,8 @@ namespace FMDb
                     {
                         producerTableAdapter.Insert(tbNameP.Text);
                         this.producerTableAdapter.Fill(this.fMDbDataSet.Producer);
-                        cbNameP.SelectedIndex = cbNameP.Items.Count - 1;
-                        rbSelP.Checked = true;
+                        cbP.SelectedIndex = cbP.Items.Count - 1;
+                        rbtnSelP.Checked = true;
                     }
                 } sconn.Close();
                 tbNameP.Text = "";
@@ -270,9 +283,9 @@ namespace FMDb
 
         private void btnAddG_Click(object sender, EventArgs e)
         {
-            if (!lbG.Items.Contains(cbNameG.Text))
+            if (!lbG.Items.Contains(cbG.Text))
             {
-                lbG.Items.Add(cbNameG.Text);
+                lbG.Items.Add(cbG.Text);
                 lbG.SelectedIndex = 0;
             }
             else
@@ -288,29 +301,29 @@ namespace FMDb
                 lbC.SelectedIndex = 0;
             }
             else
-                MessageBox.Show("Жанр уже внесен! Повторно внесен не будет.", "Ошибка!");
+                MessageBox.Show("Cтрана уже внесена! Повторно внесена не будет.", "Ошибка!");
         }
 
         private void btnAddA_Click(object sender, EventArgs e)
         {
-            if (!lbA.Items.Contains(cbNameA.Text))
+            if (!lbA.Items.Contains(cbA.Text))
             {
-                lbA.Items.Add(cbNameA.Text);
+                lbA.Items.Add(cbA.Text);
                 lbA.SelectedIndex = 0;
             }
             else
-                MessageBox.Show("Жанр уже внесен! Повторно внесен не будет.", "Ошибка!");
+                MessageBox.Show("Актер уже внесен! Повторно внесен не будет.", "Ошибка!");
         }
 
         private void btnAddP_Click(object sender, EventArgs e)
         {
-            if (!lbP.Items.Contains(cbNameP.Text))
+            if (!lbP.Items.Contains(cbP.Text))
             { 
-                lbP.Items.Add(cbNameP.Text);
+                lbP.Items.Add(cbP.Text);
                 lbP.SelectedIndex = 0;
             }
             else
-                MessageBox.Show("Жанр уже внесен! Повторно внесен не будет.", "Ошибка!");
+                MessageBox.Show("Режиссер уже внесен! Повторно внесен не будет.", "Ошибка!");
         }
 
         private void btnDelG_Click(object sender, EventArgs e)
@@ -368,7 +381,7 @@ namespace FMDb
         private void btnFilm_Click(object sender, EventArgs e)
         {
             ofdFilm.Title = "Выберите файл";
-            ofdFilm.Filter = "Видео файлы|(*.mp4;*.avi;*.mkv)";
+            ofdFilm.Filter = "Видео файлы|*.mp4;*.avi;*.mkv";
             if (ofdFilm.ShowDialog() != DialogResult.OK) return;
             tbFilm.Text = ofdFilm.FileName;
         }
@@ -391,7 +404,7 @@ namespace FMDb
             int idC = 0;
             
             
-                if (rbtnSel.Checked == true && rbSelC.Checked == true && rbSelA.Checked == true && rbSelP.Checked == true && cbNameG.Text != "" && cbC.Text != "" && cbNameA.Text != "" && cbNameP.Text != "" && tbName.Text != "" && tbYear.Text != "" && tbTime.Text != "" && lbG.Items.Count != 0 && lbC.Items.Count != 0 && lbC.Items.Count != 0 && lbP.Items.Count != 0)
+                if (rbtnSelG.Checked == true && rbtnSelC.Checked == true && rbtnSelA.Checked == true && rbtnSelP.Checked == true && cbG.Text != "" && cbC.Text != "" && cbA.Text != "" && cbP.Text != "" && tbName.Text != "" && tbYear.Text != "" && tbTime.Text != "" && lbG.Items.Count != 0 && lbC.Items.Count != 0 && lbC.Items.Count != 0 && lbP.Items.Count != 0)
                 {
 
                     SqlConnection conn = new SqlConnection(ConnectionString);
@@ -543,6 +556,9 @@ namespace FMDb
                         }
                     }
                     conn4.Close();
+                    Main newMain = new Main(true, log);
+                    newMain.Show();
+                    this.Hide();
                 }
                 else
                 {
@@ -639,10 +655,11 @@ namespace FMDb
                         conn1.Close();
                     }
                 }
+                Main newMain = new Main(true, log);
+                newMain.Show();
+                this.Hide();
             }
-            Main newMain = new Main(true, log);
-            newMain.Show();
-            this.Hide();
+
         }
 
         private void tbYear_KeyPress(object sender, KeyPressEventArgs e)
@@ -660,5 +677,76 @@ namespace FMDb
                 e.Handled = true;
             }
         }
+
+        private void rbtnNewG_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewG.Enabled = true;
+            tbNameG.Enabled = true;
+            btnAddG.Enabled = false;
+        }
+
+        private void rbtnNewC_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewC.Enabled = true;
+            tbNameC.Enabled = true;
+            btnAddC.Enabled = false;
+        }
+
+        private void rbtnNewA_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewA.Enabled = true;
+            tbNameA.Enabled = true;
+            btnAddA.Enabled = false;
+        }
+
+        private void rbtnNewP_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewP.Enabled = true;
+            tbNameP.Enabled = true;
+            btnAddP.Enabled = false;
+        }
+
+        private void frmAdd_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Main newMain = new Main(true, log);
+            newMain.Show();
+        }
+
+        private void rbtnSelG_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewG.Enabled = false;
+            tbNameG.Enabled = false;
+            btnAddG.Enabled = true;
+        }
+
+        private void rbtnSelC_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewC.Enabled = false;
+            tbNameC.Enabled = false;
+            btnAddC.Enabled = true;
+        }
+
+        private void rbtnSelA_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewA.Enabled = false;
+            tbNameA.Enabled = false;
+            btnAddA.Enabled = true;
+        }
+
+        private void rbtnSelP_CheckedChanged(object sender, EventArgs e)
+        {
+            btnNewP.Enabled = false;
+            tbNameP.Enabled = false;
+            btnAddP.Enabled = true;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }

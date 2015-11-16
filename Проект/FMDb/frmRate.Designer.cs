@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRate));
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -60,16 +61,18 @@
             this.rbtn1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.rbtn0 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbRate.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(43, 227);
+            this.btnOK.Location = new System.Drawing.Point(54, 318);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 30;
+            this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -77,10 +80,10 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(159, 227);
+            this.btnCancel.Location = new System.Drawing.Point(131, 318);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 31;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -88,7 +91,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(35, 48);
+            this.label11.Location = new System.Drawing.Point(13, 27);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 13);
             this.label11.TabIndex = 32;
@@ -97,16 +100,16 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(35, 76);
+            this.label12.Location = new System.Drawing.Point(13, 57);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 13);
+            this.label12.Size = new System.Drawing.Size(115, 13);
             this.label12.TabIndex = 33;
-            this.label12.Text = "Длительность";
+            this.label12.Text = "Длительность (мин.) ";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(35, 107);
+            this.label13.Location = new System.Drawing.Point(13, 86);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 13);
             this.label13.TabIndex = 34;
@@ -115,7 +118,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(35, 136);
+            this.label14.Location = new System.Drawing.Point(13, 115);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(48, 13);
             this.label14.TabIndex = 35;
@@ -124,7 +127,7 @@
             // lr
             // 
             this.lr.AutoSize = true;
-            this.lr.Location = new System.Drawing.Point(116, 136);
+            this.lr.Location = new System.Drawing.Point(134, 115);
             this.lr.Name = "lr";
             this.lr.Size = new System.Drawing.Size(41, 13);
             this.lr.TabIndex = 39;
@@ -133,7 +136,7 @@
             // lc
             // 
             this.lc.AutoSize = true;
-            this.lc.Location = new System.Drawing.Point(116, 107);
+            this.lc.Location = new System.Drawing.Point(134, 86);
             this.lc.Name = "lc";
             this.lc.Size = new System.Drawing.Size(41, 13);
             this.lc.TabIndex = 38;
@@ -142,7 +145,7 @@
             // ly
             // 
             this.ly.AutoSize = true;
-            this.ly.Location = new System.Drawing.Point(116, 76);
+            this.ly.Location = new System.Drawing.Point(134, 57);
             this.ly.Name = "ly";
             this.ly.Size = new System.Drawing.Size(41, 13);
             this.ly.TabIndex = 37;
@@ -151,7 +154,7 @@
             // lm
             // 
             this.lm.AutoSize = true;
-            this.lm.Location = new System.Drawing.Point(116, 48);
+            this.lm.Location = new System.Drawing.Point(134, 27);
             this.lm.Name = "lm";
             this.lm.Size = new System.Drawing.Size(41, 13);
             this.lm.TabIndex = 36;
@@ -160,14 +163,18 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(115, 9);
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label19.Location = new System.Drawing.Point(72, 43);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(50, 13);
+            this.label19.Size = new System.Drawing.Size(123, 16);
             this.label19.TabIndex = 40;
-            this.label19.Text = "Оцените";
+            this.label19.Text = "Оценить фильм";
             // 
             // gbRate
             // 
+            this.gbRate.BackColor = System.Drawing.Color.Transparent;
             this.gbRate.Controls.Add(this.label10);
             this.gbRate.Controls.Add(this.rbtn9);
             this.gbRate.Controls.Add(this.label8);
@@ -188,10 +195,11 @@
             this.gbRate.Controls.Add(this.rbtn1);
             this.gbRate.Controls.Add(this.label1);
             this.gbRate.Controls.Add(this.rbtn0);
-            this.gbRate.Location = new System.Drawing.Point(38, 160);
+            this.gbRate.ForeColor = System.Drawing.Color.White;
+            this.gbRate.Location = new System.Drawing.Point(40, 233);
             this.gbRate.Name = "gbRate";
             this.gbRate.Size = new System.Drawing.Size(196, 61);
-            this.gbRate.TabIndex = 41;
+            this.gbRate.TabIndex = 0;
             this.gbRate.TabStop = false;
             this.gbRate.Text = "Оценка";
             // 
@@ -395,29 +403,47 @@
             this.rbtn0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtn0.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.lm);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.lr);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.lc);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.ly);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Location = new System.Drawing.Point(12, 82);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(244, 145);
+            this.groupBox1.TabIndex = 41;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Информация о фильме";
+            // 
             // frmRate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.BackgroundImage = global::FMDb.Properties.Resources.free_vector_blue_star_exploding_background_133542_Blue_Star_Exploding_Background__1_;
+            this.ClientSize = new System.Drawing.Size(284, 386);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbRate);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.lr);
-            this.Controls.Add(this.lc);
-            this.Controls.Add(this.ly);
-            this.Controls.Add(this.lm);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmRate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Рейтинг";
             this.Load += new System.EventHandler(this.frmRate_Load);
             this.gbRate.ResumeLayout(false);
             this.gbRate.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,6 +483,7 @@
         private System.Windows.Forms.RadioButton rbtn1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbtn0;
+        private System.Windows.Forms.GroupBox groupBox1;
 
 
     }

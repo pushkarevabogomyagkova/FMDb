@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             this.dgLogPassAdm = new System.Windows.Forms.DataGridView();
             this.loginDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,9 +41,10 @@
             this.lblErPass = new System.Windows.Forms.Label();
             this.lblErLog = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnChange = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.chbChange = new System.Windows.Forms.CheckBox();
-            this.btnChange = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbPass = new System.Windows.Forms.TextBox();
@@ -57,7 +59,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbNewPass = new System.Windows.Forms.TextBox();
             this.tbNewLog = new System.Windows.Forms.TextBox();
-            this.btnDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgLogPassAdm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fMDbDataSet)).BeginInit();
@@ -81,8 +82,9 @@
             this.dgLogPassAdm.Name = "dgLogPassAdm";
             this.dgLogPassAdm.ReadOnly = true;
             this.dgLogPassAdm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLogPassAdm.Size = new System.Drawing.Size(345, 300);
-            this.dgLogPassAdm.TabIndex = 0;
+            this.dgLogPassAdm.Size = new System.Drawing.Size(345, 361);
+            this.dgLogPassAdm.TabIndex = 31213;
+            this.dgLogPassAdm.TabStop = false;
             this.dgLogPassAdm.SelectionChanged += new System.EventHandler(this.dgLogPassAdm_SelectionChanged);
             // 
             // loginDataGridViewTextBoxColumn
@@ -91,6 +93,7 @@
             this.loginDataGridViewTextBoxColumn.HeaderText = "Логин";
             this.loginDataGridViewTextBoxColumn.Name = "loginDataGridViewTextBoxColumn";
             this.loginDataGridViewTextBoxColumn.ReadOnly = true;
+            this.loginDataGridViewTextBoxColumn.Width = 101;
             // 
             // passwordDataGridViewTextBoxColumn
             // 
@@ -118,10 +121,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(556, 269);
+            this.btnCancel.Location = new System.Drawing.Point(428, 335);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Size = new System.Drawing.Size(121, 23);
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -148,29 +151,55 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.btnDel);
+            this.groupBox1.Controls.Add(this.btnChange);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.chbChange);
-            this.groupBox1.Controls.Add(this.btnChange);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblErPass);
             this.groupBox1.Controls.Add(this.lblErLog);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tbPass);
             this.groupBox1.Controls.Add(this.tbLog);
-            this.groupBox1.Location = new System.Drawing.Point(351, 10);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(351, 76);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 119);
-            this.groupBox1.TabIndex = 9;
+            this.groupBox1.Size = new System.Drawing.Size(265, 119);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Изменить";
+            this.groupBox1.Text = "Изменить учетную запись";
+            // 
+            // btnDel
+            // 
+            this.btnDel.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnDel.Location = new System.Drawing.Point(104, 90);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.TabIndex = 5;
+            this.btnDel.Text = "Удалить";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // btnChange
+            // 
+            this.btnChange.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnChange.Location = new System.Drawing.Point(185, 90);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(75, 23);
+            this.btnChange.TabIndex = 6;
+            this.btnChange.Text = "Изменить";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(13, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 21;
+            this.label5.TabIndex = 210;
             this.label5.Text = "Админ";
             // 
             // chbChange
@@ -179,35 +208,27 @@
             this.chbChange.Location = new System.Drawing.Point(67, 78);
             this.chbChange.Name = "chbChange";
             this.chbChange.Size = new System.Drawing.Size(15, 14);
-            this.chbChange.TabIndex = 20;
+            this.chbChange.TabIndex = 4;
             this.chbChange.UseVisualStyleBackColor = true;
-            // 
-            // btnChange
-            // 
-            this.btnChange.Location = new System.Drawing.Point(188, 90);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(75, 23);
-            this.btnChange.TabIndex = 11;
-            this.btnChange.Text = "Изменить";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 55);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(13, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
-            this.label2.TabIndex = 10;
+            this.label2.TabIndex = 1090;
             this.label2.Text = "Пароль:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 26);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(20, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 90;
             this.label1.Text = "Логин:";
             // 
             // tbPass
@@ -215,17 +236,22 @@
             this.tbPass.Location = new System.Drawing.Point(67, 52);
             this.tbPass.Name = "tbPass";
             this.tbPass.Size = new System.Drawing.Size(112, 20);
-            this.tbPass.TabIndex = 8;
+            this.tbPass.TabIndex = 3;
             // 
             // tbLog
             // 
+            this.tbLog.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tbLog.Enabled = false;
             this.tbLog.Location = new System.Drawing.Point(67, 26);
             this.tbLog.Name = "tbLog";
+            this.tbLog.ReadOnly = true;
             this.tbLog.Size = new System.Drawing.Size(112, 20);
-            this.tbLog.TabIndex = 7;
+            this.tbLog.TabIndex = 2000;
+            this.tbLog.TextChanged += new System.EventHandler(this.tbLog_TextChanged_1);
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Black;
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.chbAdm);
             this.groupBox2.Controls.Add(this.btnAdd);
@@ -235,12 +261,13 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.tbNewPass);
             this.groupBox2.Controls.Add(this.tbNewLog);
-            this.groupBox2.Location = new System.Drawing.Point(351, 135);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.groupBox2.Location = new System.Drawing.Point(351, 201);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(280, 128);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.Size = new System.Drawing.Size(265, 128);
+            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Добавить";
+            this.groupBox2.Text = "Добавить учетную запись";
             // 
             // label4
             // 
@@ -248,7 +275,7 @@
             this.label4.Location = new System.Drawing.Point(13, 82);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 19;
+            this.label4.TabIndex = 1944;
             this.label4.Text = "Админ";
             // 
             // chbAdm
@@ -257,15 +284,16 @@
             this.chbAdm.Location = new System.Drawing.Point(67, 81);
             this.chbAdm.Name = "chbAdm";
             this.chbAdm.Size = new System.Drawing.Size(15, 14);
-            this.chbAdm.TabIndex = 18;
+            this.chbAdm.TabIndex = 9;
             this.chbAdm.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(188, 96);
+            this.btnAdd.ForeColor = System.Drawing.Color.Black;
+            this.btnAdd.Location = new System.Drawing.Point(185, 99);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 17;
+            this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -276,7 +304,7 @@
             this.label3.Location = new System.Drawing.Point(13, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 16;
+            this.label3.TabIndex = 1644;
             this.label3.Text = "Пароль:";
             // 
             // lblAddPass
@@ -301,7 +329,7 @@
             this.label6.Location = new System.Drawing.Point(13, 29);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 15;
+            this.label6.TabIndex = 1554;
             this.label6.Text = "Логин:";
             // 
             // tbNewPass
@@ -309,35 +337,28 @@
             this.tbNewPass.Location = new System.Drawing.Point(67, 55);
             this.tbNewPass.Name = "tbNewPass";
             this.tbNewPass.Size = new System.Drawing.Size(112, 20);
-            this.tbNewPass.TabIndex = 14;
+            this.tbNewPass.TabIndex = 9;
             // 
             // tbNewLog
             // 
             this.tbNewLog.Location = new System.Drawing.Point(67, 29);
             this.tbNewLog.Name = "tbNewLog";
             this.tbNewLog.Size = new System.Drawing.Size(112, 20);
-            this.tbNewLog.TabIndex = 12;
-            // 
-            // btnDel
-            // 
-            this.btnDel.Location = new System.Drawing.Point(475, 269);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(75, 23);
-            this.btnDel.TabIndex = 11;
-            this.btnDel.Text = "Удалить";
-            this.btnDel.UseVisualStyleBackColor = true;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            this.tbNewLog.TabIndex = 8;
             // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 300);
-            this.Controls.Add(this.btnDel);
+            this.BackgroundImage = global::FMDb.Properties.Resources._58534_in_the_directors_chair_david_lynch;
+            this.ClientSize = new System.Drawing.Size(625, 361);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.dgLogPassAdm);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Управление учетными записями";
@@ -360,9 +381,6 @@
         private FMDbDataSet fMDbDataSet;
         private System.Windows.Forms.BindingSource loginBindingSource;
         private FMDbDataSetTableAdapters.LoginTableAdapter loginTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn adminDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Label lblErPass;
         private System.Windows.Forms.Label lblErLog;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -384,5 +402,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chbAdm;
         private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn loginDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn adminDataGridViewCheckBoxColumn;
     }
 }
