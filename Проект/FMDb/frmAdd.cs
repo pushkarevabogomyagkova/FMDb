@@ -26,6 +26,7 @@ namespace FMDb
         string film;
         string dd;
         string idf;
+        string pathDesc = "";
         public string ConnectionString { get; set; }
         public frmAdd(string _textfrm,string _log,string _idf,string _name, string _year, string _time,string[] _genre,string[] _country, string[] _actor, string[] _prod, string _poster,string _film, string _d)
         {
@@ -160,10 +161,11 @@ namespace FMDb
                     {
                         tbFilm.Text = dr[0].ToString();
                         tbPoster.Text = dr[1].ToString();
-                        tbDesc.Text = dr[2].ToString();
+                        pathDesc = dr[2].ToString();
                     }
                     dr.Close();
                 } sconn.Close();
+                rtbDesc.LoadFile(pathDesc);
             }
         }
 
@@ -391,7 +393,7 @@ namespace FMDb
             ofdDesc.Title = "Выберите файл";
             ofdDesc.Filter = "Текстовые файлы|*.rtf";
             if (ofdDesc.ShowDialog() != DialogResult.OK) return;
-            tbDesc.Text = ofdDesc.FileName;
+            //tbDesc.Text = ofdDesc.FileName;
         }
 
 
@@ -402,11 +404,12 @@ namespace FMDb
             int idA= 0;
             int idP = 0;
             int idC = 0;
-            
-            
-                if (rbtnSelG.Checked == true && rbtnSelC.Checked == true && rbtnSelA.Checked == true && rbtnSelP.Checked == true && cbG.Text != "" && cbC.Text != "" && cbA.Text != "" && cbP.Text != "" && tbName.Text != "" && tbYear.Text != "" && tbTime.Text != "" && lbG.Items.Count != 0 && lbC.Items.Count != 0 && lbC.Items.Count != 0 && lbP.Items.Count != 0)
-                {
 
+            
+                if (tbName.Text != "" && tbYear.Text != "" && tbTime.Text != "" && lbG.Items.Count != 0 && lbC.Items.Count != 0 && lbA.Items.Count != 0 && lbP.Items.Count != 0)
+                {
+                    pathDesc = "C:/Users/Вероника/Desktop/фильмы/" + tbName.Text + ".rtf";
+                    rtbDesc.SaveFile(pathDesc);
                     SqlConnection conn = new SqlConnection(ConnectionString);
                     using (conn)
                     {
@@ -432,7 +435,7 @@ namespace FMDb
                         sconn.Open();
                         SqlCommand scommand = new SqlCommand();
                         scommand.Connection = sconn;
-                        scommand.CommandText = string.Format(query1,idfilm, tbName.Text,Convert.ToInt32(tbTime.Text), Convert.ToInt32(tbYear.Text),tbDesc.Text,tbFilm.Text,tbPoster.Text,s,c,r);
+                        scommand.CommandText = string.Format(query1,idfilm, tbName.Text,Convert.ToInt32(tbTime.Text), Convert.ToInt32(tbYear.Text),pathDesc,tbFilm.Text,tbPoster.Text,s,c,r);
                         scommand.CommandType = CommandType.Text;
                         scommand.ExecuteNonQuery();
                     } sconn.Close();
@@ -556,13 +559,34 @@ namespace FMDb
                         }
                     }
                     conn4.Close();
-                    Main newMain = new Main(true, log);
-                    newMain.Show();
-                    this.Hide();
                 }
                 else
                 {
-                    MessageBox.Show("Заполните все поля!", "Ошибка!");
+                    if (tbName.Text == "") { MessageBox.Show("Введите название фильма!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); tbName.Focus(); }
+                    else
+                    {
+                        if (tbYear.Text == "") { MessageBox.Show("Введите год!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); tbYear.Focus(); }
+                        else
+                        {
+                            if (tbTime.Text == "") { MessageBox.Show("Введите продолжительность фильма!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); tbTime.Focus(); }
+                            else
+                            {
+                                if (lbG.Items.Count == 0) { MessageBox.Show("Добавьте жанр!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); btnAddG.Focus(); }
+                                else
+                                {
+                                    if (lbC.Items.Count == 0) { MessageBox.Show("Добавьте страну!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); btnAddC.Focus(); }
+                                    else
+                                    {
+                                        if (lbA.Items.Count == 0) { MessageBox.Show("Добавьте актера!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); btnAddA.Focus(); }
+                                        else
+                                        {
+                                            if (lbP.Items.Count == 0) { MessageBox.Show("Добавьте продюссера!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error); btnAddP.Focus(); }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }        
         }
 
@@ -570,7 +594,8 @@ namespace FMDb
         {
             if (this.Text=="Добавить")
             {
-                AddNewFilm(0,0,0,"0");     
+                AddNewFilm(0,0,0,"0");
+                this.Close();
             }
             else
             {
@@ -655,9 +680,7 @@ namespace FMDb
                         conn1.Close();
                     }
                 }
-                Main newMain = new Main(true, log);
-                newMain.Show();
-                this.Hide();
+                this.Close();
             }
 
         }

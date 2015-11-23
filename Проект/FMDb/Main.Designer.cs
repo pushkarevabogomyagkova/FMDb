@@ -59,16 +59,11 @@
             this.tsbtnChange = new System.Windows.Forms.ToolStripButton();
             this.tsbtnDel = new System.Windows.Forms.ToolStripButton();
             this.tsbtnAdm = new System.Windows.Forms.ToolStripButton();
+            this.tsbGCAP = new System.Windows.Forms.ToolStripButton();
             this.tsSearch = new System.Windows.Forms.ToolStrip();
             this.tsbtnLogOut = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSearch = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.viewFilmBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fMDbDataSet = new FMDb.FMDbDataSet();
             this.viewFilmTableAdapter = new FMDb.FMDbDataSetTableAdapters.ViewFilmTableAdapter();
@@ -80,6 +75,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBoxPoster = new System.Windows.Forms.PictureBox();
+            this.filmBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.filmTableAdapter = new FMDb.FMDbDataSetTableAdapters.FilmTableAdapter();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelSearch.SuspendLayout();
             this.tsAdmin.SuspendLayout();
             this.tsSearch.SuspendLayout();
@@ -87,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewFilmBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fMDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filmBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // filterboxName
@@ -201,7 +205,7 @@
             this.btnPlay.Location = new System.Drawing.Point(639, 498);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(219, 51);
-            this.btnPlay.TabIndex = 2;
+            this.btnPlay.TabIndex = 3;
             this.btnPlay.Text = "►";
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
@@ -211,7 +215,7 @@
             this.BtnExt.Location = new System.Drawing.Point(868, 517);
             this.BtnExt.Name = "BtnExt";
             this.BtnExt.Size = new System.Drawing.Size(209, 30);
-            this.BtnExt.TabIndex = 3;
+            this.BtnExt.TabIndex = 4;
             this.BtnExt.Text = "Выход";
             this.BtnExt.UseVisualStyleBackColor = true;
             this.BtnExt.Click += new System.EventHandler(this.BtnExt_Click);
@@ -331,10 +335,11 @@
             this.tsbtnAdd,
             this.tsbtnChange,
             this.tsbtnDel,
-            this.tsbtnAdm});
+            this.tsbtnAdm,
+            this.tsbGCAP});
             this.tsAdmin.Location = new System.Drawing.Point(64, 8);
             this.tsAdmin.Name = "tsAdmin";
-            this.tsAdmin.Size = new System.Drawing.Size(104, 25);
+            this.tsAdmin.Size = new System.Drawing.Size(127, 25);
             this.tsAdmin.TabIndex = 0;
             this.tsAdmin.Text = "toolStrip2";
             // 
@@ -382,6 +387,16 @@
             this.tsbtnAdm.ToolTipText = "Управление учетными записями";
             this.tsbtnAdm.Click += new System.EventHandler(this.tsbtnAdm_Click);
             // 
+            // tsbGCAP
+            // 
+            this.tsbGCAP.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbGCAP.Image = ((System.Drawing.Image)(resources.GetObject("tsbGCAP.Image")));
+            this.tsbGCAP.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbGCAP.Name = "tsbGCAP";
+            this.tsbGCAP.Size = new System.Drawing.Size(23, 22);
+            this.tsbGCAP.Text = "toolStripButton1";
+            this.tsbGCAP.Click += new System.EventHandler(this.tsbGCAP_Click);
+            // 
             // tsSearch
             // 
             this.tsSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -428,70 +443,16 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
+            this.rate,
             this.dataGridViewCheckBoxColumn1});
-            this.dataGridView1.DataSource = this.viewFilmBindingSource;
+            this.dataGridView1.DataSource = this.filmBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(5, 100);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(629, 449);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "IDMovie";
-            this.dataGridViewTextBoxColumn5.HeaderText = "IDMovie";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Название";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Название";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.Width = 180;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Длительность";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Длительность";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.Width = 101;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Год";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Год";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.Width = 101;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Оценка";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Оценка";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn4.Width = 101;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Просмотрен";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Просмотрен";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxColumn1.Width = 103;
             // 
             // viewFilmBindingSource
             // 
@@ -512,7 +473,7 @@
             this.btnRate.Location = new System.Drawing.Point(643, 440);
             this.btnRate.Name = "btnRate";
             this.btnRate.Size = new System.Drawing.Size(219, 23);
-            this.btnRate.TabIndex = 0;
+            this.btnRate.TabIndex = 1;
             this.btnRate.Text = "Оценить фильм";
             this.btnRate.UseVisualStyleBackColor = true;
             this.btnRate.Click += new System.EventHandler(this.button1_Click);
@@ -522,8 +483,8 @@
             this.btnUp.Location = new System.Drawing.Point(643, 469);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(219, 23);
-            this.btnUp.TabIndex = 1;
-            this.btnUp.Text = "Пометить как непросмотренный";
+            this.btnUp.TabIndex = 2;
+            this.btnUp.Text = "Просмотрен/не просмотрен";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
@@ -589,12 +550,79 @@
             // 
             // pictureBoxPoster
             // 
+            this.pictureBoxPoster.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxPoster.BackgroundImage = global::FMDb.Properties.Resources.Безимени_1;
             this.pictureBoxPoster.Image = global::FMDb.Properties.Resources.Безимени_1;
             this.pictureBoxPoster.Location = new System.Drawing.Point(868, 100);
             this.pictureBoxPoster.Name = "pictureBoxPoster";
             this.pictureBoxPoster.Size = new System.Drawing.Size(209, 261);
             this.pictureBoxPoster.TabIndex = 12;
             this.pictureBoxPoster.TabStop = false;
+            // 
+            // filmBindingSource
+            // 
+            this.filmBindingSource.DataMember = "Film";
+            this.filmBindingSource.DataSource = this.fMDbDataSet;
+            // 
+            // filmTableAdapter
+            // 
+            this.filmTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "IDMovie";
+            this.dataGridViewTextBoxColumn5.HeaderText = "IDMovie";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Название";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 180;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Длительность";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Длительность";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 101;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Год";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Год";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Width = 101;
+            // 
+            // rate
+            // 
+            this.rate.DataPropertyName = "rate";
+            this.rate.HeaderText = "Оценка";
+            this.rate.Name = "rate";
+            this.rate.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Просмотрен";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Просмотрен";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxColumn1.Width = 103;
             // 
             // Main
             // 
@@ -639,6 +667,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewFilmBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fMDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filmBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -702,11 +731,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStripButton tsbGCAP;
+        private System.Windows.Forms.BindingSource filmBindingSource;
+        private FMDbDataSetTableAdapters.FilmTableAdapter filmTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rate;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
     }
 }

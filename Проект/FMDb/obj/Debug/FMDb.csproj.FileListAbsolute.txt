@@ -26,3 +26,4 @@ C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.Admin.resources
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmAdd.resources
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmRate.resources
+C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.ChngGCAP.resources

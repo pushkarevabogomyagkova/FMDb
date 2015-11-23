@@ -49,9 +49,12 @@ namespace FMDb
 
         private void Main_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "fMDbDataSet.Film". При необходимости она может быть перемещена или удалена.
+            this.filmTableAdapter.Fill(this.fMDbDataSet.Film);
 
             // TODO: данная строка кода позволяет загрузить данные в таблицу "fMDbDataSet.ViewFilm". При необходимости она может быть перемещена или удалена.
-            this.viewFilmTableAdapter.Fill(this.fMDbDataSet.ViewFilm);
+            this.filmTableAdapter.Fill(this.fMDbDataSet.Film);
+            dataGridView1.Sort(dataGridViewTextBoxColumn1, ListSortDirection.Ascending);
             this.Text = "Добро пожаловать, " + login+". ";
             panelSearch.Visible = false;
             if (!adm)
@@ -152,84 +155,88 @@ namespace FMDb
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
-        {   
-
-            try
-            {
-                SqlConnection sconn = new SqlConnection(ConnectionString);
-                using (sconn)
+        {
+           
+                try
                 {
-                    sconn.Open();
-                    SqlCommand scommand = new SqlCommand();
-                    scommand.Connection = sconn;
-                    scommand.CommandText = @"SELECT [Путь к фильму] from [Film] where [IDMovie]=" + dataGridView1.SelectedCells[0].Value.ToString();
-                    SqlDataReader dr = scommand.ExecuteReader();
-                    while (dr.Read())
+                    SqlConnection sconn = new SqlConnection(ConnectionString);
+                    using (sconn)
                     {
-                        film = dr[0].ToString();
-                        Process.Start(film);
-                    }
-                    dr.Close();
-                } 
-                sconn.Close();
-            }
-            catch (Exception ex)
-            {  }
-
-            SqlConnection conn = null;
-            string query = "INSERT INTO [View] VALUES ('{0}','{1}')";
-            try
-            {
-                conn = new SqlConnection(ConnectionString);
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = string.Format(query, Convert.ToInt32(dataGridView1.SelectedCells[0].Value.ToString()), login);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {}
-            finally
-            {
-                conn.Close();
-            }
-            try
-            {
-                string[] idfilm = new string[35];
-                SqlConnection sconn = new SqlConnection(ConnectionString);
-                using (sconn)
-                {
-                    sconn.Open();
-                    SqlCommand scommand = new SqlCommand();
-                    scommand.Connection = sconn;
-                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
-                    SqlDataReader dr = scommand.ExecuteReader();
-                    int i = 0;
-                    while (dr.Read())
-                    {
-                        idfilm[i] = dr[0].ToString();
-                        i++;
-                    }
-                    dr.Close();
-                } sconn.Close();
-                for (int i = 0; i < 35; i++)
-                {
-                    if (idfilm != null)
-                    {
-                        if (idfilm[i] != null)
+                        sconn.Open();
+                        SqlCommand scommand = new SqlCommand();
+                        scommand.Connection = sconn;
+                        scommand.CommandText = @"SELECT [Путь к фильму] from [Film] where [IDMovie]=" + dataGridView1.SelectedCells[0].Value.ToString();
+                        SqlDataReader dr = scommand.ExecuteReader();
+                        while (dr.Read())
                         {
-                            int j = 0;
-                            while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
-                            { j++; }
-                            dataGridView1.Rows[j].Cells[5].Value = true;
+                            film = dr[0].ToString();
+                            Process.Start(film);
                         }
-
+                        dr.Close();
+                    }
+                    sconn.Close();
+                }
+                catch (Exception ex)
+                { }
+                if (film != "")
+                {
+                SqlConnection conn = null;
+                string query = "INSERT INTO [View] VALUES ('{0}','{1}')";
+                try
+                {
+                    conn = new SqlConnection(ConnectionString);
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = string.Format(query, Convert.ToInt32(dataGridView1.SelectedCells[0].Value.ToString()), login);
+                        cmd.ExecuteNonQuery();
                     }
                 }
+                catch (Exception ex)
+                { }
+                finally
+                {
+                    conn.Close();
+                }
+                
+                try
+                {
+                    string[] idfilm = new string[35];
+                    SqlConnection sconn = new SqlConnection(ConnectionString);
+                    using (sconn)
+                    {
+                        sconn.Open();
+                        SqlCommand scommand = new SqlCommand();
+                        scommand.Connection = sconn;
+                        scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                        SqlDataReader dr = scommand.ExecuteReader();
+                        int i = 0;
+                        while (dr.Read())
+                        {
+                            idfilm[i] = dr[0].ToString();
+                            i++;
+                        }
+                        dr.Close();
+                    } sconn.Close();
+                    for (int i = 0; i < 35; i++)
+                    {
+                        if (idfilm != null)
+                        {
+                            if (idfilm[i] != null)
+                            {
+                                int j = 0;
+                                while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
+                                { j++; }
+                                dataGridView1.Rows[j].Cells[5].Value = true;
+                            }
+
+                        }
+                    }
+                }
+                catch { }
             }
-            catch { }
+                else { MessageBox.Show("Такого фильма нет", "Извините", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void tsbtnAdm_Click(object sender, EventArgs e)
@@ -493,7 +500,7 @@ namespace FMDb
 
         private void newRate_FormClosed(object sender, FormClosedEventArgs e)
         {
-            viewFilmTableAdapter.Fill(fMDbDataSet.ViewFilm);
+            filmTableAdapter.Fill(fMDbDataSet.Film);
             try
             {
                 string[] idfilm = new string[35];
@@ -561,7 +568,7 @@ namespace FMDb
                     finally
                     {
                         conn.Close();
-                        this.viewFilmTableAdapter.Fill(this.fMDbDataSet.ViewFilm);
+                        this.filmTableAdapter.Fill(this.fMDbDataSet.Film);
                         string[] idfilm = new string[35];
                         SqlConnection sconn = new SqlConnection(ConnectionString);
                         using (sconn)
@@ -749,7 +756,8 @@ namespace FMDb
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            dataGridView1.SelectedCells[5].Value = false;
+            if (Convert.ToBoolean(dataGridView1.SelectedCells[5].Value))
+            {dataGridView1.SelectedCells[5].Value = false;
             SqlConnection conn = null;
                     String query = "DELETE [View] WHERE [IDf]='{0}' AND [Log]='{1}'";
                     try
@@ -770,7 +778,79 @@ namespace FMDb
                     finally
                     {
                         conn.Close();
+                    }}
+            else
+            {
+                dataGridView1.SelectedCells[5].Value = true;
+                SqlConnection conn = null;
+                String query = "INSERT INTO [View] VALUES ('{0}','{1}')";
+                try
+                {
+                    conn = new SqlConnection(ConnectionString);
+                    conn.Open();
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = string.Format(query, dataGridView1.SelectedCells[0].Value.ToString(), login);
+                        cmd.ExecuteNonQuery();
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка!");
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void tsbGCAP_Click(object sender, EventArgs e)
+        {
+            ChngGCAP newChngGCAP = new ChngGCAP();
+            newChngGCAP.Show();
+            newChngGCAP.FormClosed += newChngGCAP_FormClosed;
+        }
+
+        private void newChngGCAP_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            filmTableAdapter.Fill(fMDbDataSet.Film);
+            try
+            {
+                string[] idfilm = new string[35];
+                SqlConnection sconn = new SqlConnection(ConnectionString);
+                using (sconn)
+                {
+                    sconn.Open();
+                    SqlCommand scommand = new SqlCommand();
+                    scommand.Connection = sconn;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    SqlDataReader dr = scommand.ExecuteReader();
+                    int i = 0;
+                    while (dr.Read())
+                    {
+                        idfilm[i] = dr[0].ToString();
+                        i++;
+                    }
+                    dr.Close();
+                } sconn.Close();
+                for (int i = 0; i < 35; i++)
+                {
+                    if (idfilm != null)
+                    {
+                        if (idfilm[i] != null)
+                        {
+                            int j = 0;
+                            while (dataGridView1.Rows[j].Cells[0].Value.ToString() != idfilm[i])
+                            { j++; }
+                            dataGridView1.Rows[j].Cells[5].Value = true;
+                        }
+
+                    }
+                }
+            }
+            catch { }
         }
 
    

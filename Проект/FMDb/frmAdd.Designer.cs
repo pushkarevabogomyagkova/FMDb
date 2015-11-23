@@ -88,14 +88,14 @@
             this.producerTableAdapter = new FMDb.FMDbDataSetTableAdapters.ProducerTableAdapter();
             this.btnPoster = new System.Windows.Forms.Button();
             this.btnFilm = new System.Windows.Forms.Button();
-            this.btnDesc = new System.Windows.Forms.Button();
             this.tbPoster = new System.Windows.Forms.TextBox();
             this.ofdPoster = new System.Windows.Forms.OpenFileDialog();
             this.tbFilm = new System.Windows.Forms.TextBox();
-            this.tbDesc = new System.Windows.Forms.TextBox();
             this.ofdFilm = new System.Windows.Forms.OpenFileDialog();
             this.ofdDesc = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rtbDesc = new System.Windows.Forms.RichTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.gbGenre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.genreBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fMDbDataSet)).BeginInit();
@@ -188,6 +188,7 @@
             // 
             this.cbG.DataSource = this.genreBindingSource;
             this.cbG.DisplayMember = "Genre";
+            this.cbG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbG.FormattingEnabled = true;
             this.cbG.Location = new System.Drawing.Point(196, 103);
             this.cbG.Name = "cbG";
@@ -308,6 +309,7 @@
             // 
             this.cbC.DataSource = this.countryBindingSource;
             this.cbC.DisplayMember = "Country";
+            this.cbC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbC.FormattingEnabled = true;
             this.cbC.Location = new System.Drawing.Point(196, 103);
             this.cbC.Name = "cbC";
@@ -424,6 +426,7 @@
             // 
             this.cbP.DataSource = this.producerBindingSource;
             this.cbP.DisplayMember = "Name_p";
+            this.cbP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbP.FormattingEnabled = true;
             this.cbP.Location = new System.Drawing.Point(196, 110);
             this.cbP.Name = "cbP";
@@ -541,6 +544,7 @@
             // 
             this.cbA.DataSource = this.actorsBindingSource;
             this.cbA.DisplayMember = "name";
+            this.cbA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbA.FormattingEnabled = true;
             this.cbA.Location = new System.Drawing.Point(196, 110);
             this.cbA.Name = "cbA";
@@ -616,7 +620,7 @@
             // 
             // btnCAFilm
             // 
-            this.btnCAFilm.Location = new System.Drawing.Point(672, 481);
+            this.btnCAFilm.Location = new System.Drawing.Point(674, 546);
             this.btnCAFilm.Name = "btnCAFilm";
             this.btnCAFilm.Size = new System.Drawing.Size(75, 23);
             this.btnCAFilm.TabIndex = 22;
@@ -626,7 +630,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(753, 481);
+            this.btnCancel.Location = new System.Drawing.Point(759, 546);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 23;
@@ -670,7 +674,7 @@
             // 
             // btnPoster
             // 
-            this.btnPoster.Location = new System.Drawing.Point(238, 425);
+            this.btnPoster.Location = new System.Drawing.Point(238, 458);
             this.btnPoster.Name = "btnPoster";
             this.btnPoster.Size = new System.Drawing.Size(170, 23);
             this.btnPoster.TabIndex = 19;
@@ -680,7 +684,7 @@
             // 
             // btnFilm
             // 
-            this.btnFilm.Location = new System.Drawing.Point(238, 454);
+            this.btnFilm.Location = new System.Drawing.Point(238, 494);
             this.btnFilm.Name = "btnFilm";
             this.btnFilm.Size = new System.Drawing.Size(170, 23);
             this.btnFilm.TabIndex = 20;
@@ -688,19 +692,9 @@
             this.btnFilm.UseVisualStyleBackColor = true;
             this.btnFilm.Click += new System.EventHandler(this.btnFilm_Click);
             // 
-            // btnDesc
-            // 
-            this.btnDesc.Location = new System.Drawing.Point(238, 483);
-            this.btnDesc.Name = "btnDesc";
-            this.btnDesc.Size = new System.Drawing.Size(170, 23);
-            this.btnDesc.TabIndex = 21;
-            this.btnDesc.Text = "Выбрать описание";
-            this.btnDesc.UseVisualStyleBackColor = true;
-            this.btnDesc.Click += new System.EventHandler(this.btnDesc_Click);
-            // 
             // tbPoster
             // 
-            this.tbPoster.Location = new System.Drawing.Point(12, 427);
+            this.tbPoster.Location = new System.Drawing.Point(12, 460);
             this.tbPoster.Name = "tbPoster";
             this.tbPoster.Size = new System.Drawing.Size(203, 20);
             this.tbPoster.TabIndex = 22;
@@ -708,19 +702,11 @@
             // 
             // tbFilm
             // 
-            this.tbFilm.Location = new System.Drawing.Point(12, 457);
+            this.tbFilm.Location = new System.Drawing.Point(12, 497);
             this.tbFilm.Name = "tbFilm";
             this.tbFilm.Size = new System.Drawing.Size(203, 20);
             this.tbFilm.TabIndex = 23;
             this.tbFilm.TabStop = false;
-            // 
-            // tbDesc
-            // 
-            this.tbDesc.Location = new System.Drawing.Point(12, 486);
-            this.tbDesc.Name = "tbDesc";
-            this.tbDesc.Size = new System.Drawing.Size(203, 20);
-            this.tbDesc.TabIndex = 24;
-            this.tbDesc.TabStop = false;
             // 
             // groupBox1
             // 
@@ -739,20 +725,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Информация о фильме";
             // 
+            // rtbDesc
+            // 
+            this.rtbDesc.Location = new System.Drawing.Point(432, 442);
+            this.rtbDesc.Name = "rtbDesc";
+            this.rtbDesc.Size = new System.Drawing.Size(402, 95);
+            this.rtbDesc.TabIndex = 25;
+            this.rtbDesc.Text = "";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(432, 423);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(116, 13);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Введите описание";
+            // 
             // frmAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::FMDb.Properties.Resources.Film_Reel_Wallpaper_1_kopia__1_;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(846, 516);
+            this.ClientSize = new System.Drawing.Size(846, 581);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.rtbDesc);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tbDesc);
             this.Controls.Add(this.tbFilm);
             this.Controls.Add(this.tbPoster);
-            this.Controls.Add(this.btnDesc);
             this.Controls.Add(this.btnFilm);
             this.Controls.Add(this.btnPoster);
             this.Controls.Add(this.btnCancel);
@@ -849,13 +854,13 @@
         private FMDbDataSetTableAdapters.ProducerTableAdapter producerTableAdapter;
         private System.Windows.Forms.Button btnPoster;
         private System.Windows.Forms.Button btnFilm;
-        private System.Windows.Forms.Button btnDesc;
         private System.Windows.Forms.TextBox tbPoster;
         private System.Windows.Forms.OpenFileDialog ofdPoster;
         private System.Windows.Forms.TextBox tbFilm;
-        private System.Windows.Forms.TextBox tbDesc;
         private System.Windows.Forms.OpenFileDialog ofdFilm;
         private System.Windows.Forms.OpenFileDialog ofdDesc;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RichTextBox rtbDesc;
+        private System.Windows.Forms.Label label8;
     }
 }
