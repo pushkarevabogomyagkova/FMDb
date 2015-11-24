@@ -31,6 +31,8 @@ namespace FMDb
         string poster;
         string film;
         string dd;
+        string path ="D:/ОПРИС/log.rtf";
+        string appendText;
         public string ConnectionString { get; set; }
 
         public Main(bool _adm, string _login)
@@ -40,7 +42,7 @@ namespace FMDb
             login = _login;
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "SUPER_PC",
+                DataSource = "GALINA-PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -123,6 +125,8 @@ namespace FMDb
                           MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                appendText = DateTime.Now.ToString() + ": пользователь " + login + " вышел из системы.\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 Application.Exit();
             }
         }
@@ -135,11 +139,14 @@ namespace FMDb
                           MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                appendText = DateTime.Now.ToString() + ": пользователь " + login + " вышел из учетной записи.\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 adm = false;
                 login = "";
                 this.Hide();
                 frmLogIn newLog = new frmLogIn();
                 newLog.Show();
+
             }
         }
 
@@ -149,6 +156,8 @@ namespace FMDb
             if (DialogResult.Yes == MessageBox.Show("Вы уверены, что желаете закрыть программу?", "FMDb: Выход из программы",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
+                appendText = DateTime.Now.ToString() + ": пользователь " + login + " вышел из системы.\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 Application.Exit();
             }
             else { e.Cancel = true; }
@@ -171,8 +180,11 @@ namespace FMDb
                         {
                             film = dr[0].ToString();
                             Process.Start(film);
+
                         }
                         dr.Close();
+                        appendText = DateTime.Now.ToString() + ": пользователь " + login + " запустил фильм " + dataGridView1.SelectedCells[1].Value.ToString() + ".\n";
+                        File.AppendAllText(path, appendText, Encoding.UTF8);
                     }
                     sconn.Close();
                 }
@@ -192,6 +204,8 @@ namespace FMDb
                         cmd.CommandText = string.Format(query, Convert.ToInt32(dataGridView1.SelectedCells[0].Value.ToString()), login);
                         cmd.ExecuteNonQuery();
                     }
+
+                    
                 }
                 catch (Exception ex)
                 { }
@@ -241,7 +255,7 @@ namespace FMDb
 
         private void tsbtnAdm_Click(object sender, EventArgs e)
         {
-            Admin newAdmin = new Admin();
+            Admin newAdmin = new Admin(login);
             newAdmin.Show(); 
         }
 
@@ -493,7 +507,7 @@ namespace FMDb
         private void button1_Click(object sender, EventArgs e)
         {
             string sss = dataGridView1.SelectedCells[0].Value.ToString();
-            frmRate newRate = new frmRate(sss);
+            frmRate newRate = new frmRate(sss,login);
             newRate.FormClosed+=newRate_FormClosed;
             newRate.Show();
         }
@@ -560,6 +574,8 @@ namespace FMDb
                             cmd.CommandText = string.Format(query, dataGridView1.SelectedCells[0].Value.ToString());
                             cmd.ExecuteNonQuery();
                         }
+                        appendText = DateTime.Now.ToString() + ": пользователь " + login + " удалил фильм " + dataGridView1.SelectedCells[1].Value.ToString() + ".\n";
+                        File.AppendAllText(path, appendText, Encoding.UTF8);
                     }
                     catch (Exception ex)
                     {
@@ -758,6 +774,9 @@ namespace FMDb
         {
             if (Convert.ToBoolean(dataGridView1.SelectedCells[5].Value))
             {dataGridView1.SelectedCells[5].Value = false;
+
+            appendText = DateTime.Now.ToString() + ": пользователь " + login + " пометил фильм " + dataGridView1.SelectedCells[1].Value.ToString() + " как непросмотренный.\n";
+            File.AppendAllText(path, appendText, Encoding.UTF8);
             SqlConnection conn = null;
                     String query = "DELETE [View] WHERE [IDf]='{0}' AND [Log]='{1}'";
                     try
@@ -782,6 +801,8 @@ namespace FMDb
             else
             {
                 dataGridView1.SelectedCells[5].Value = true;
+                appendText = DateTime.Now.ToString() + ": пользователь " + login + " пометил фильм " + dataGridView1.SelectedCells[1].Value.ToString() + " как просмотренный.\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 SqlConnection conn = null;
                 String query = "INSERT INTO [View] VALUES ('{0}','{1}')";
                 try
@@ -808,7 +829,7 @@ namespace FMDb
 
         private void tsbGCAP_Click(object sender, EventArgs e)
         {
-            ChngGCAP newChngGCAP = new ChngGCAP();
+            ChngGCAP newChngGCAP = new ChngGCAP(login);
             newChngGCAP.Show();
             newChngGCAP.FormClosed += newChngGCAP_FormClosed;
         }
@@ -851,6 +872,12 @@ namespace FMDb
                 }
             }
             catch { }
+        }
+
+        private void tsbLog_Click(object sender, EventArgs e)
+        {
+            frmShowLog newShowLog = new frmShowLog();
+            newShowLog.Show();
         }
 
    

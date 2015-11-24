@@ -32,17 +32,17 @@
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tpGenre = new System.Windows.Forms.TabPage();
             this.dgvGenre = new System.Windows.Forms.DataGridView();
-            this.iDGDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fMDbDataSet = new FMDb.FMDbDataSet();
             this.tpCountry = new System.Windows.Forms.TabPage();
             this.dgvCountry = new System.Windows.Forms.DataGridView();
+            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tpActors = new System.Windows.Forms.TabPage();
             this.dgvActors = new System.Windows.Forms.DataGridView();
             this.actorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tpProd = new System.Windows.Forms.TabPage();
+            this.dgvProd = new System.Windows.Forms.DataGridView();
             this.producerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.genreTableAdapter = new FMDb.FMDbDataSetTableAdapters.GenreTableAdapter();
             this.countryTableAdapter = new FMDb.FMDbDataSetTableAdapters.CountryTableAdapter();
@@ -50,12 +50,9 @@
             this.producerTableAdapter = new FMDb.FMDbDataSetTableAdapters.ProducerTableAdapter();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.iDactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvProd = new System.Windows.Forms.DataGridView();
-            this.iDprodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namepDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbControl.SuspendLayout();
             this.tpGenre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenre)).BeginInit();
@@ -68,8 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvActors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorsBindingSource)).BeginInit();
             this.tpProd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.producerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.producerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControl
@@ -101,7 +98,6 @@
             this.dgvGenre.AutoGenerateColumns = false;
             this.dgvGenre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGenre.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDGDataGridViewTextBoxColumn,
             this.genreDataGridViewTextBoxColumn});
             this.dgvGenre.DataSource = this.genreBindingSource;
             this.dgvGenre.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -109,19 +105,6 @@
             this.dgvGenre.Name = "dgvGenre";
             this.dgvGenre.Size = new System.Drawing.Size(458, 307);
             this.dgvGenre.TabIndex = 0;
-            // 
-            // iDGDataGridViewTextBoxColumn
-            // 
-            this.iDGDataGridViewTextBoxColumn.DataPropertyName = "IDG";
-            this.iDGDataGridViewTextBoxColumn.HeaderText = "IDG";
-            this.iDGDataGridViewTextBoxColumn.Name = "iDGDataGridViewTextBoxColumn";
-            this.iDGDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // genreDataGridViewTextBoxColumn
-            // 
-            this.genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
-            this.genreDataGridViewTextBoxColumn.HeaderText = "Жанр";
-            this.genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
             // 
             // genreBindingSource
             // 
@@ -146,7 +129,6 @@
             // 
             // dgvCountry
             // 
-            this.dgvCountry.AllowUserToOrderColumns = true;
             this.dgvCountry.AutoGenerateColumns = false;
             this.dgvCountry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCountry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -157,6 +139,12 @@
             this.dgvCountry.Name = "dgvCountry";
             this.dgvCountry.Size = new System.Drawing.Size(458, 307);
             this.dgvCountry.TabIndex = 1;
+            // 
+            // countryDataGridViewTextBoxColumn
+            // 
+            this.countryDataGridViewTextBoxColumn.DataPropertyName = "Country";
+            this.countryDataGridViewTextBoxColumn.HeaderText = "Страна";
+            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
             // 
             // countryBindingSource
             // 
@@ -176,11 +164,9 @@
             // 
             // dgvActors
             // 
-            this.dgvActors.AllowUserToOrderColumns = true;
             this.dgvActors.AutoGenerateColumns = false;
             this.dgvActors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvActors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDactDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
             this.dgvActors.DataSource = this.actorsBindingSource;
             this.dgvActors.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -204,6 +190,19 @@
             this.tpProd.TabIndex = 3;
             this.tpProd.Text = "Режиссеры";
             this.tpProd.UseVisualStyleBackColor = true;
+            // 
+            // dgvProd
+            // 
+            this.dgvProd.AutoGenerateColumns = false;
+            this.dgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.namepDataGridViewTextBoxColumn});
+            this.dgvProd.DataSource = this.producerBindingSource;
+            this.dgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProd.Location = new System.Drawing.Point(3, 3);
+            this.dgvProd.Name = "dgvProd";
+            this.dgvProd.Size = new System.Drawing.Size(458, 307);
+            this.dgvProd.TabIndex = 0;
             // 
             // producerBindingSource
             // 
@@ -247,42 +246,11 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // iDactDataGridViewTextBoxColumn
-            // 
-            this.iDactDataGridViewTextBoxColumn.DataPropertyName = "IDact";
-            this.iDactDataGridViewTextBoxColumn.HeaderText = "IDact";
-            this.iDactDataGridViewTextBoxColumn.Name = "iDactDataGridViewTextBoxColumn";
-            this.iDactDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDactDataGridViewTextBoxColumn.Visible = false;
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Актер";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // dgvProd
-            // 
-            this.dgvProd.AllowUserToOrderColumns = true;
-            this.dgvProd.AutoGenerateColumns = false;
-            this.dgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDprodDataGridViewTextBoxColumn,
-            this.namepDataGridViewTextBoxColumn});
-            this.dgvProd.DataSource = this.producerBindingSource;
-            this.dgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProd.Location = new System.Drawing.Point(3, 3);
-            this.dgvProd.Name = "dgvProd";
-            this.dgvProd.Size = new System.Drawing.Size(458, 307);
-            this.dgvProd.TabIndex = 0;
-            // 
-            // iDprodDataGridViewTextBoxColumn
-            // 
-            this.iDprodDataGridViewTextBoxColumn.DataPropertyName = "IDprod";
-            this.iDprodDataGridViewTextBoxColumn.HeaderText = "IDProd";
-            this.iDprodDataGridViewTextBoxColumn.Name = "iDprodDataGridViewTextBoxColumn";
-            this.iDprodDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDprodDataGridViewTextBoxColumn.Visible = false;
             // 
             // namepDataGridViewTextBoxColumn
             // 
@@ -290,11 +258,11 @@
             this.namepDataGridViewTextBoxColumn.HeaderText = "Режиссер";
             this.namepDataGridViewTextBoxColumn.Name = "namepDataGridViewTextBoxColumn";
             // 
-            // countryDataGridViewTextBoxColumn
+            // genreDataGridViewTextBoxColumn
             // 
-            this.countryDataGridViewTextBoxColumn.DataPropertyName = "Country";
-            this.countryDataGridViewTextBoxColumn.HeaderText = "Страна";
-            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
+            this.genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
+            this.genreDataGridViewTextBoxColumn.HeaderText = "Жанр";
+            this.genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
             // 
             // ChngGCAP
             // 
@@ -319,8 +287,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvActors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorsBindingSource)).EndInit();
             this.tpProd.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.producerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.producerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -344,15 +312,12 @@
         private FMDbDataSetTableAdapters.ActorsTableAdapter actorsTableAdapter;
         private System.Windows.Forms.BindingSource producerBindingSource;
         private FMDbDataSetTableAdapters.ProducerTableAdapter producerTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDGDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genreDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDactDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dgvProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDprodDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn namepDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namepDataGridViewTextBoxColumn;
     }
 }

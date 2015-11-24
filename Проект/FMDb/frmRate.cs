@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +18,18 @@ namespace FMDb
         float sum1;
         int count1;
         double rate1;
+        string path = "D:/ОПРИС/log.rtf";
+        string appendText;
+        string log;
         public string ConnectionString { get; set; }
-        public frmRate(string _s)
+        public frmRate(string _s,string _log)
         {
             InitializeComponent();
             s = _s;
+            log = _log;
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "SUPER_PC",
+                DataSource = "GALINA-PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -86,16 +91,21 @@ namespace FMDb
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (rbtn0.Checked) { sum1 += 0; count1++; }
-            if (rbtn1.Checked) { sum1 += 1; count1++; }
-            if (rbtn2.Checked) { sum1 += 2; count1++; }
-            if (rbtn3.Checked) { sum1 += 3; count1++; }
-            if (rbtn4.Checked) { sum1 += 4; count1++; }
-            if (rbtn5.Checked) { sum1 += 5; count1++; }
-            if (rbtn6.Checked) { sum1 += 6; count1++; }
-            if (rbtn7.Checked) { sum1 += 7; count1++; }
-            if (rbtn8.Checked) { sum1 += 8; count1++; }
-            if (rbtn9.Checked) { sum1 += 9; count1++; }
+            int num=0;
+            if (rbtn0.Checked) { num = 0; }
+            if (rbtn1.Checked) { num = 1; }
+            if (rbtn2.Checked) { num = 2; }
+            if (rbtn3.Checked) { num = 3; }
+            if (rbtn4.Checked) { num = 4; }
+            if (rbtn5.Checked) { num = 5; }
+            if (rbtn6.Checked) { num = 6; }
+            if (rbtn7.Checked) { num = 7; }
+            if (rbtn8.Checked) { num = 8; }
+            if (rbtn9.Checked) { num = 9; }
+            appendText = DateTime.Now.ToString() + ": пользователь " + log + " поставил оценку "+num.ToString()+" фильму "+lm.Text+".\n";
+            File.AppendAllText(path, appendText, Encoding.UTF8);
+            sum1 += num;
+            count1++;
             rate1 = Math.Round(sum1 / count1,0);
                 SqlConnection conn = null;
                 String query = "UPDATE [Film] SET [sum]='{0}',[count]='{1}',[rate]='{2}' WHERE [IDMovie]='{3}'";

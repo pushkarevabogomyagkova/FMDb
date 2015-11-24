@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,15 @@ namespace FMDb
 {
     public partial class frmLogIn : Form
     {
+        string path="D:/ОПРИС/log.rtf";
+        string appendText;
         string ConnectionString { get; set; }
         public frmLogIn()
         {
             InitializeComponent();
             var sb = new SqlConnectionStringBuilder
             {
-                //DataSource = "SUPER_PC",
-                DataSource = "SUPER_PC",
+                DataSource = "GALINA-PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -58,6 +60,8 @@ namespace FMDb
                             if (pass == tbPass.Text)
                             {
                                 bool adm = Convert.ToBoolean(dr[2]); Main newMain = new Main(adm, log);
+                                appendText = DateTime.Now.ToString() + ": пользователь " + log + " вошел в систему.\n";
+                                File.AppendAllText(path, appendText, Encoding.UTF8);
                                 newMain.Show(); this.Hide();
                             }
                             else

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,13 @@ namespace FMDb
 {
     public partial class ChngGCAP : Form
     {
-        public ChngGCAP()
+        string path = "D:/ОПРИС/log.rtf";
+        string appendText;
+        string log;
+        public ChngGCAP(string _log)
         {
             InitializeComponent();
+            log = _log;
         }
 
         private void ChngGCAP_Load(object sender, EventArgs e)
@@ -39,6 +44,9 @@ namespace FMDb
                           MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+
+                appendText = DateTime.Now.ToString() + ": пользователь " + log + " внес изменения в один из рабочих списков (жанры, страны, актеры, режиссеры).\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 if (dgvGenre.DataSource == genreBindingSource)
                 {
                     this.Validate();

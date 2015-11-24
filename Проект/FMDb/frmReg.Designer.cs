@@ -38,6 +38,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pbCapture = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbTitle = new System.Windows.Forms.TextBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblErCapture = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCapture)).BeginInit();
             this.SuspendLayout();
             // 
             // tbNewLog
@@ -59,7 +65,7 @@
             // bntRegist
             // 
             this.bntRegist.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bntRegist.Location = new System.Drawing.Point(44, 163);
+            this.bntRegist.Location = new System.Drawing.Point(44, 303);
             this.bntRegist.Name = "bntRegist";
             this.bntRegist.Size = new System.Drawing.Size(123, 23);
             this.bntRegist.TabIndex = 2;
@@ -71,7 +77,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCancel.Location = new System.Drawing.Point(181, 163);
+            this.btnCancel.Location = new System.Drawing.Point(181, 303);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -92,7 +98,7 @@
             // 
             this.lblEP.AutoSize = true;
             this.lblEP.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblEP.Location = new System.Drawing.Point(89, 147);
+            this.lblEP.Location = new System.Drawing.Point(89, 287);
             this.lblEP.Name = "lblEP";
             this.lblEP.Size = new System.Drawing.Size(0, 13);
             this.lblEP.TabIndex = 5;
@@ -133,6 +139,53 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Придумайте логин и пароль";
             // 
+            // pbCapture
+            // 
+            this.pbCapture.Location = new System.Drawing.Point(88, 161);
+            this.pbCapture.Name = "pbCapture";
+            this.pbCapture.Size = new System.Drawing.Size(200, 60);
+            this.pbCapture.TabIndex = 9;
+            this.pbCapture.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(85, 224);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Введите символы с картинки:";
+            // 
+            // tbTitle
+            // 
+            this.tbTitle.Location = new System.Drawing.Point(88, 240);
+            this.tbTitle.Name = "tbTitle";
+            this.tbTitle.Size = new System.Drawing.Size(196, 20);
+            this.tbTitle.TabIndex = 11;
+            this.tbTitle.TextChanged += new System.EventHandler(this.tbTitle_TextChanged);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(88, 266);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(83, 31);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.Text = "Обновить";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblErCapture
+            // 
+            this.lblErCapture.AutoSize = true;
+            this.lblErCapture.Location = new System.Drawing.Point(178, 266);
+            this.lblErCapture.Name = "lblErCapture";
+            this.lblErCapture.Size = new System.Drawing.Size(35, 13);
+            this.lblErCapture.TabIndex = 13;
+            this.lblErCapture.Text = "label5";
+            // 
             // frmReg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,7 +193,12 @@
             this.BackgroundImage = global::FMDb.Properties.Resources.filmstrip_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(299, 239);
+            this.ClientSize = new System.Drawing.Size(299, 338);
+            this.Controls.Add(this.lblErCapture);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.tbTitle);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pbCapture);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -157,6 +215,8 @@
             this.Name = "frmReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Регистрация";
+            this.Load += new System.EventHandler(this.frmReg_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCapture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +233,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pbCapture;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbTitle;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label lblErCapture;
     }
 }
 

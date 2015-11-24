@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,8 @@ namespace FMDb
         string dd;
         string idf;
         string pathDesc = "";
+        string path = "D:/ОПРИС/log.rtf";
+        string appendText;
         public string ConnectionString { get; set; }
         public frmAdd(string _textfrm,string _log,string _idf,string _name, string _year, string _time,string[] _genre,string[] _country, string[] _actor, string[] _prod, string _poster,string _film, string _d)
         {
@@ -35,7 +38,7 @@ namespace FMDb
 
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "SUPER_PC",
+                DataSource = "GALINA-PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -408,7 +411,7 @@ namespace FMDb
             
                 if (tbName.Text != "" && tbYear.Text != "" && tbTime.Text != "" && lbG.Items.Count != 0 && lbC.Items.Count != 0 && lbA.Items.Count != 0 && lbP.Items.Count != 0)
                 {
-                    pathDesc = "C:/Users/Вероника/Desktop/фильмы/" + tbName.Text + ".rtf";
+                    pathDesc = "D:/ОПРИС/Фильмы/" + tbName.Text + ".rtf";
                     rtbDesc.SaveFile(pathDesc);
                     SqlConnection conn = new SqlConnection(ConnectionString);
                     using (conn)
@@ -595,10 +598,14 @@ namespace FMDb
             if (this.Text=="Добавить")
             {
                 AddNewFilm(0,0,0,"0");
+                appendText = DateTime.Now.ToString() + ": пользователь " + log + " добавил фильм "+ tbName.Text+".\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 this.Close();
             }
             else
             {
+                appendText = DateTime.Now.ToString() + ": пользователь " + log + " изменил фильм " + tbName.Text + ".\n";
+                File.AppendAllText(path, appendText, Encoding.UTF8);
                 int sum=0;
                 int count = 0;
                 string rate="";

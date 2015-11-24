@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,18 @@ namespace FMDb
 {
     public partial class Admin : Form
     {
+        string path = "D:/ОПРИС/log.rtf";
+        string appendText;
+        string log;
         string ConnectionString { get; set; }            
-        public Admin()
+        public Admin(string _log)
         {
             InitializeComponent();
+            log = _log;
             var sb = new SqlConnectionStringBuilder
             {
-                //DataSource = "SUPER_PC",
-                DataSource = "SUPER_PC",
+                //DataSource = "GALINA-PC",
+                DataSource = "GALINA-PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -90,6 +95,8 @@ namespace FMDb
                                 {
                                     if (dgLogPassAdm.DataSource == loginBindingSource)
                                     {
+                                        appendText = DateTime.Now.ToString() + ": пользователь " + log + " изменил учетную запись пользователя " + dgLogPassAdm.SelectedCells[0].Value.ToString() + " .\n";
+                                        File.AppendAllText(path, appendText, Encoding.UTF8);
                                         dgLogPassAdm.SelectedCells[0].Value = tbLog.Text;
                                         dgLogPassAdm.SelectedCells[1].Value = tbPass.Text;
                                         dgLogPassAdm.SelectedCells[2].Value = chbChange.Checked;
@@ -106,6 +113,8 @@ namespace FMDb
                         {
                             if (dgLogPassAdm.DataSource == loginBindingSource)
                             {
+                                appendText = DateTime.Now.ToString() + ": пользователь " + log + " изменил учетную запись пользователя " + dgLogPassAdm.SelectedCells[0].Value.ToString() + " .\n";
+                                File.AppendAllText(path, appendText, Encoding.UTF8);
                                 dgLogPassAdm.SelectedCells[0].Value = tbLog.Text;
                                 dgLogPassAdm.SelectedCells[1].Value = tbPass.Text;
                                 dgLogPassAdm.SelectedCells[2].Value = chbChange.Checked;
@@ -117,7 +126,7 @@ namespace FMDb
                         }
                     }
                 }
-
+                
             }
             catch (Exception except)
             {
@@ -159,6 +168,8 @@ namespace FMDb
                                     cmd.CommandText = string.Format(query, tbNewLog.Text, tbNewPass.Text,chbAdm.Checked);
                                     cmd.ExecuteNonQuery();
                                 }
+                                appendText = DateTime.Now.ToString() + ": пользователь " + log + " добавил нового пользователя " + tbNewLog.Text + ".\n";
+                                File.AppendAllText(path, appendText, Encoding.UTF8);
                             }
                             catch (Exception ex)
                             {
@@ -182,38 +193,44 @@ namespace FMDb
 
         private void btnDel_Click(object sender, EventArgs e)   
         {
-            var result = new System.Windows.Forms.DialogResult();
-            result = MessageBox.Show("Вы уверены, что желаете удалить эту запись?", "FMDb: Удаление ",
-                          MessageBoxButtons.YesNo,
-                          MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (dgLogPassAdm.SelectedCells[0].ToString() != log)
             {
-                if (dgLogPassAdm.SelectedCells.Count == 3)
+                var result = new System.Windows.Forms.DialogResult();
+                result = MessageBox.Show("Вы уверены, что желаете удалить эту запись?", "FMDb: Удаление ",
+                              MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    SqlConnection conn = null;
-                    String query = "DELETE Login WHERE [Login]='{0}'";
-                    try
+                    if (dgLogPassAdm.SelectedCells.Count == 3)
                     {
-                        conn = new SqlConnection(ConnectionString);
-                        conn.Open();
-                        using (var cmd = conn.CreateCommand())
+                        SqlConnection conn = null;
+                        String query = "DELETE Login WHERE [Login]='{0}'";
+                        try
                         {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.CommandText = string.Format(query, dgLogPassAdm.SelectedCells[0].Value.ToString());
-                            cmd.ExecuteNonQuery();
+                            conn = new SqlConnection(ConnectionString);
+                            conn.Open();
+                            using (var cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandType = CommandType.Text;
+                                cmd.CommandText = string.Format(query, dgLogPassAdm.SelectedCells[0].Value.ToString());
+                                cmd.ExecuteNonQuery();
+                            }
+                            appendText = DateTime.Now.ToString() + ": пользователь " + log + " удалил пользователя " + dgLogPassAdm.SelectedCells[0].Value.ToString() + " .\n";
+                            File.AppendAllText(path, appendText, Encoding.UTF8);
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка!");
-                    }
-                    finally
-                    {
-                        conn.Close();
-                        this.loginTableAdapter.Fill(this.fMDbDataSet.Login);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка!");
+                        }
+                        finally
+                        {
+                            conn.Close();
+                            this.loginTableAdapter.Fill(this.fMDbDataSet.Login);
+                        }
                     }
                 }
             }
+            else { MessageBox.Show("Вы не можете удалить свою учетную запись"); }
         }
 
         private void tbLog_TextChanged_1(object sender, EventArgs e)
