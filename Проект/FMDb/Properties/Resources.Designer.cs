@@ -63,16 +63,6 @@ namespace FMDb.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _58534_in_the_directors_chair_david_lynch {
-            get {
-                object obj = ResourceManager.GetObject("58534_in-the-directors-chair-david-lynch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -96,87 +86,6 @@ namespace FMDb.Properties {
         internal static System.Drawing.Bitmap del {
             get {
                 object obj = ResourceManager.GetObject("del", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Film_Reel_Wallpaper_1 {
-            get {
-                object obj = ResourceManager.GetObject("Film-Reel-Wallpaper-1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Film_Reel_Wallpaper_1_kopia {
-            get {
-                object obj = ResourceManager.GetObject("Film-Reel-Wallpaper-1_kopia", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Film_Reel_Wallpaper_1_kopia__1_ {
-            get {
-                object obj = ResourceManager.GetObject("Film-Reel-Wallpaper-1_kopia (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Film_Reel_Wallpaper_1_kopia1 {
-            get {
-                object obj = ResourceManager.GetObject("Film-Reel-Wallpaper-1_kopia1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap filmstrip_1png {
-            get {
-                object obj = ResourceManager.GetObject("filmstrip-1png", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap filmstrip_background {
-            get {
-                object obj = ResourceManager.GetObject("filmstrip-background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap free_vector_blue_star_exploding_background_133542_Blue_Star_Exploding_Background {
-            get {
-                object obj = ResourceManager.GetObject("free-vector-blue-star-exploding-background_133542_Blue_Star_Exploding_Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap free_vector_blue_star_exploding_background_133542_Blue_Star_Exploding_Background__1_ {
-            get {
-                object obj = ResourceManager.GetObject("free-vector-blue-star-exploding-background_133542_Blue_Star_Exploding_Background " +
-                        "(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -220,7 +129,5 @@ namespace FMDb.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-        public static System.Drawing.Image defaultpicture { get; set; }
     }
 }

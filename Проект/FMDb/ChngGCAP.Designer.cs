@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChngGCAP));
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tpGenre = new System.Windows.Forms.TabPage();
             this.dgvGenre = new System.Windows.Forms.DataGridView();
+            this.genreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fMDbDataSet = new FMDb.FMDbDataSet();
             this.tpCountry = new System.Windows.Forms.TabPage();
@@ -40,9 +42,11 @@
             this.countryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tpActors = new System.Windows.Forms.TabPage();
             this.dgvActors = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tpProd = new System.Windows.Forms.TabPage();
             this.dgvProd = new System.Windows.Forms.DataGridView();
+            this.namepDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.producerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.genreTableAdapter = new FMDb.FMDbDataSetTableAdapters.GenreTableAdapter();
             this.countryTableAdapter = new FMDb.FMDbDataSetTableAdapters.CountryTableAdapter();
@@ -50,9 +54,6 @@
             this.producerTableAdapter = new FMDb.FMDbDataSetTableAdapters.ProducerTableAdapter();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namepDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbControl.SuspendLayout();
             this.tpGenre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenre)).BeginInit();
@@ -79,7 +80,7 @@
             this.tbControl.Location = new System.Drawing.Point(0, 0);
             this.tbControl.Name = "tbControl";
             this.tbControl.SelectedIndex = 0;
-            this.tbControl.Size = new System.Drawing.Size(472, 339);
+            this.tbControl.Size = new System.Drawing.Size(298, 339);
             this.tbControl.TabIndex = 0;
             // 
             // tpGenre
@@ -88,7 +89,7 @@
             this.tpGenre.Location = new System.Drawing.Point(4, 22);
             this.tpGenre.Name = "tpGenre";
             this.tpGenre.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGenre.Size = new System.Drawing.Size(464, 313);
+            this.tpGenre.Size = new System.Drawing.Size(290, 313);
             this.tpGenre.TabIndex = 0;
             this.tpGenre.Text = "Жанры";
             this.tpGenre.UseVisualStyleBackColor = true;
@@ -96,6 +97,7 @@
             // dgvGenre
             // 
             this.dgvGenre.AutoGenerateColumns = false;
+            this.dgvGenre.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvGenre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGenre.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.genreDataGridViewTextBoxColumn});
@@ -103,8 +105,14 @@
             this.dgvGenre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvGenre.Location = new System.Drawing.Point(3, 3);
             this.dgvGenre.Name = "dgvGenre";
-            this.dgvGenre.Size = new System.Drawing.Size(458, 307);
+            this.dgvGenre.Size = new System.Drawing.Size(284, 307);
             this.dgvGenre.TabIndex = 0;
+            // 
+            // genreDataGridViewTextBoxColumn
+            // 
+            this.genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
+            this.genreDataGridViewTextBoxColumn.HeaderText = "Жанр";
+            this.genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
             // 
             // genreBindingSource
             // 
@@ -122,7 +130,7 @@
             this.tpCountry.Location = new System.Drawing.Point(4, 22);
             this.tpCountry.Name = "tpCountry";
             this.tpCountry.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCountry.Size = new System.Drawing.Size(464, 313);
+            this.tpCountry.Size = new System.Drawing.Size(290, 313);
             this.tpCountry.TabIndex = 1;
             this.tpCountry.Text = "Страны";
             this.tpCountry.UseVisualStyleBackColor = true;
@@ -130,6 +138,7 @@
             // dgvCountry
             // 
             this.dgvCountry.AutoGenerateColumns = false;
+            this.dgvCountry.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvCountry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCountry.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.countryDataGridViewTextBoxColumn});
@@ -137,7 +146,7 @@
             this.dgvCountry.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCountry.Location = new System.Drawing.Point(3, 3);
             this.dgvCountry.Name = "dgvCountry";
-            this.dgvCountry.Size = new System.Drawing.Size(458, 307);
+            this.dgvCountry.Size = new System.Drawing.Size(284, 307);
             this.dgvCountry.TabIndex = 1;
             // 
             // countryDataGridViewTextBoxColumn
@@ -157,7 +166,7 @@
             this.tpActors.Location = new System.Drawing.Point(4, 22);
             this.tpActors.Name = "tpActors";
             this.tpActors.Padding = new System.Windows.Forms.Padding(3);
-            this.tpActors.Size = new System.Drawing.Size(464, 313);
+            this.tpActors.Size = new System.Drawing.Size(290, 313);
             this.tpActors.TabIndex = 2;
             this.tpActors.Text = "Актеры";
             this.tpActors.UseVisualStyleBackColor = true;
@@ -165,6 +174,7 @@
             // dgvActors
             // 
             this.dgvActors.AutoGenerateColumns = false;
+            this.dgvActors.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvActors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvActors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn});
@@ -172,8 +182,14 @@
             this.dgvActors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvActors.Location = new System.Drawing.Point(3, 3);
             this.dgvActors.Name = "dgvActors";
-            this.dgvActors.Size = new System.Drawing.Size(458, 307);
+            this.dgvActors.Size = new System.Drawing.Size(284, 307);
             this.dgvActors.TabIndex = 1;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Актер";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // actorsBindingSource
             // 
@@ -186,7 +202,7 @@
             this.tpProd.Location = new System.Drawing.Point(4, 22);
             this.tpProd.Name = "tpProd";
             this.tpProd.Padding = new System.Windows.Forms.Padding(3);
-            this.tpProd.Size = new System.Drawing.Size(464, 313);
+            this.tpProd.Size = new System.Drawing.Size(290, 313);
             this.tpProd.TabIndex = 3;
             this.tpProd.Text = "Режиссеры";
             this.tpProd.UseVisualStyleBackColor = true;
@@ -194,6 +210,7 @@
             // dgvProd
             // 
             this.dgvProd.AutoGenerateColumns = false;
+            this.dgvProd.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.namepDataGridViewTextBoxColumn});
@@ -201,8 +218,14 @@
             this.dgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProd.Location = new System.Drawing.Point(3, 3);
             this.dgvProd.Name = "dgvProd";
-            this.dgvProd.Size = new System.Drawing.Size(458, 307);
+            this.dgvProd.Size = new System.Drawing.Size(284, 307);
             this.dgvProd.TabIndex = 0;
+            // 
+            // namepDataGridViewTextBoxColumn
+            // 
+            this.namepDataGridViewTextBoxColumn.DataPropertyName = "Name_p";
+            this.namepDataGridViewTextBoxColumn.HeaderText = "Режиссер";
+            this.namepDataGridViewTextBoxColumn.Name = "namepDataGridViewTextBoxColumn";
             // 
             // producerBindingSource
             // 
@@ -228,7 +251,7 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnCancel.Location = new System.Drawing.Point(339, 345);
+            this.btnCancel.Location = new System.Drawing.Point(172, 345);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(121, 23);
             this.btnCancel.TabIndex = 14;
@@ -238,7 +261,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(171, 345);
+            this.btnSave.Location = new System.Drawing.Point(4, 345);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(162, 23);
             this.btnSave.TabIndex = 15;
@@ -246,34 +269,18 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Актер";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // namepDataGridViewTextBoxColumn
-            // 
-            this.namepDataGridViewTextBoxColumn.DataPropertyName = "Name_p";
-            this.namepDataGridViewTextBoxColumn.HeaderText = "Режиссер";
-            this.namepDataGridViewTextBoxColumn.Name = "namepDataGridViewTextBoxColumn";
-            // 
-            // genreDataGridViewTextBoxColumn
-            // 
-            this.genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
-            this.genreDataGridViewTextBoxColumn.HeaderText = "Жанр";
-            this.genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
-            // 
             // ChngGCAP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 380);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(298, 380);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbControl);
             this.Controls.Add(this.btnCancel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChngGCAP";
-            this.Text = "ChngGCAP";
+            this.Text = "Рабочие таблицы";
             this.Load += new System.EventHandler(this.ChngGCAP_Load);
             this.tbControl.ResumeLayout(false);
             this.tpGenre.ResumeLayout(false);

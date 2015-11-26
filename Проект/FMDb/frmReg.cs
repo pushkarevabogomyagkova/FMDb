@@ -24,7 +24,7 @@ namespace FMDb
             InitializeComponent();
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "GALINA-PC",
+                DataSource = "SUPER_PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
@@ -101,8 +101,7 @@ namespace FMDb
             {
                 Random random = new Random();
                 int idc;
-               // idc = random.Next(1, 31);
-                idc = 1;
+                idc = random.Next(1, 31);
                 var sqlconection = new SqlConnection(ConnectionString);
                 using (sqlconection)
                 {
@@ -142,8 +141,7 @@ namespace FMDb
         {
             Random random = new Random();
             int idc;
-            //idc=random.Next(1,31);
-            idc = 1;
+            idc=random.Next(1,31);
             var sqlconection = new SqlConnection(ConnectionString);
             using (sqlconection)
             {
@@ -171,8 +169,7 @@ namespace FMDb
         {
             Random random = new Random();
             int idc;
-            //idc = random.Next(1, 32);
-            idc = 2;
+            idc = random.Next(1, 31);
             var sqlconection = new SqlConnection(ConnectionString);
             using (sqlconection)
             {

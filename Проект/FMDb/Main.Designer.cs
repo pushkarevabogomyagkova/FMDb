@@ -60,6 +60,7 @@
             this.tsbtnDel = new System.Windows.Forms.ToolStripButton();
             this.tsbtnAdm = new System.Windows.Forms.ToolStripButton();
             this.tsbGCAP = new System.Windows.Forms.ToolStripButton();
+            this.tsbLog = new System.Windows.Forms.ToolStripButton();
             this.tsSearch = new System.Windows.Forms.ToolStrip();
             this.tsbtnLogOut = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSearch = new System.Windows.Forms.ToolStripButton();
@@ -83,7 +84,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBoxPoster = new System.Windows.Forms.PictureBox();
             this.filmTableAdapter = new FMDb.FMDbDataSetTableAdapters.FilmTableAdapter();
-            this.tsbLog = new System.Windows.Forms.ToolStripButton();
             this.panelSearch.SuspendLayout();
             this.tsAdmin.SuspendLayout();
             this.tsSearch.SuspendLayout();
@@ -341,7 +341,7 @@
             this.tsbLog});
             this.tsAdmin.Location = new System.Drawing.Point(64, 8);
             this.tsAdmin.Name = "tsAdmin";
-            this.tsAdmin.Size = new System.Drawing.Size(181, 25);
+            this.tsAdmin.Size = new System.Drawing.Size(150, 25);
             this.tsAdmin.TabIndex = 0;
             this.tsAdmin.Text = "toolStrip2";
             // 
@@ -396,8 +396,19 @@
             this.tsbGCAP.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbGCAP.Name = "tsbGCAP";
             this.tsbGCAP.Size = new System.Drawing.Size(23, 22);
-            this.tsbGCAP.Text = "toolStripButton1";
+            this.tsbGCAP.Text = "Рабочие таблицы";
             this.tsbGCAP.Click += new System.EventHandler(this.tsbGCAP_Click);
+            // 
+            // tsbLog
+            // 
+            this.tsbLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbLog.Image = ((System.Drawing.Image)(resources.GetObject("tsbLog.Image")));
+            this.tsbLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbLog.Name = "tsbLog";
+            this.tsbLog.Size = new System.Drawing.Size(23, 22);
+            this.tsbLog.Tag = "Вывести лог";
+            this.tsbLog.Text = "Вывести лог";
+            this.tsbLog.Click += new System.EventHandler(this.tsbLog_Click);
             // 
             // tsSearch
             // 
@@ -626,22 +637,11 @@
             // 
             this.filmTableAdapter.ClearBeforeFill = true;
             // 
-            // tsbLog
-            // 
-            this.tsbLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbLog.Image = ((System.Drawing.Image)(resources.GetObject("tsbLog.Image")));
-            this.tsbLog.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbLog.Name = "tsbLog";
-            this.tsbLog.Size = new System.Drawing.Size(23, 22);
-            this.tsbLog.Tag = "Вывести лог";
-            this.tsbLog.Text = "toolStripButton1";
-            this.tsbLog.Click += new System.EventHandler(this.tsbLog_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FMDb.Properties.Resources.Film_Reel_Wallpaper_1;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1087, 559);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);

@@ -26,7 +26,7 @@ namespace FMDb.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GALINA-PC;Initial Catalog=FMDb;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SUPER_PC;Initial Catalog=FMDb;Integrated Security=True")]
         public string FMDbConnectionString {
             get {
                 return ((string)(this["FMDbConnectionString"]));
@@ -36,7 +36,7 @@ namespace FMDb.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GALINA-PC;Initial Catalog=FMDb;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SUPER_PC;Initial Catalog=FMDb;Integrated Security=True")]
         public string FMDbConnectionString1 {
             get {
                 return ((string)(this["FMDbConnectionString1"]));

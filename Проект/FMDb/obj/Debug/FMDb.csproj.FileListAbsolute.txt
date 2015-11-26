@@ -29,3 +29,4 @@ C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\F
 C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.ChngGCAP.resources
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.ChngGCAP.resources
 C:\Users\Галина\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmShowLog.resources
+C:\Users\Вероника\Documents\Visual Studio 2013\Projects\FMDb\obj\Debug\FMDb.frmShowLog.resources

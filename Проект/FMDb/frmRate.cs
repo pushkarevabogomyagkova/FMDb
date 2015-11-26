@@ -29,7 +29,7 @@ namespace FMDb
             log = _log;
             var sb = new SqlConnectionStringBuilder
             {
-                DataSource = "GALINA-PC",
+                DataSource = "SUPER_PC",
                 InitialCatalog = "FMDb",
                 IntegratedSecurity = true
             };
