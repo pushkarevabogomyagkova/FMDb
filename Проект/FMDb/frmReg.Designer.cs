@@ -186,9 +186,8 @@
             this.lblErCapture.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblErCapture.Location = new System.Drawing.Point(22, 220);
             this.lblErCapture.Name = "lblErCapture";
-            this.lblErCapture.Size = new System.Drawing.Size(35, 13);
+            this.lblErCapture.Size = new System.Drawing.Size(0, 13);
             this.lblErCapture.TabIndex = 13;
-            this.lblErCapture.Text = "label5";
             // 
             // frmReg
             // 

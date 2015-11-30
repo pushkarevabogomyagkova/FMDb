@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,15 +13,24 @@ using System.Windows.Forms;
 
 namespace FMDb
 {
+
     public partial class ChngGCAP : Form
     {
         string path = "D:/ОПРИС/log.rtf";
         string appendText;
         string log;
+        public string ConnectionString { get; set; }
         public ChngGCAP(string _log)
         {
             InitializeComponent();
             log = _log;
+            var sb = new SqlConnectionStringBuilder
+            {
+                DataSource = "SUPER_PC",
+                InitialCatalog = "FMDb",
+                IntegratedSecurity = true
+            };
+            ConnectionString = sb.ConnectionString;
         }
 
         private void ChngGCAP_Load(object sender, EventArgs e)
@@ -44,36 +55,44 @@ namespace FMDb
                           MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                try
+                {
+                    appendText = DateTime.Now.ToString() + ": пользователь " + log + " внес изменения в один из рабочих списков (жанры, страны, актеры, режиссеры).\n";
+                    File.AppendAllText(path, appendText, Encoding.UTF8);
 
-                appendText = DateTime.Now.ToString() + ": пользователь " + log + " внес изменения в один из рабочих списков (жанры, страны, актеры, режиссеры).\n";
-                File.AppendAllText(path, appendText, Encoding.UTF8);
-                if (dgvGenre.DataSource == genreBindingSource)
-                {
-                    this.Validate();
-                    genreBindingSource.EndEdit();
-                    genreTableAdapter.Update(fMDbDataSet);
-                    genreTableAdapter.Fill(fMDbDataSet.Genre);
+                    if (dgvGenre.DataSource == genreBindingSource)
+                    {
+                        this.Validate();
+                        genreBindingSource.EndEdit();
+                        genreTableAdapter.Update(fMDbDataSet);
+                        genreTableAdapter.Fill(fMDbDataSet.Genre);
+                    }
+                    if (dgvCountry.DataSource == countryBindingSource)
+                    {
+                        this.Validate();
+                        countryBindingSource.EndEdit();
+                        countryTableAdapter.Update(fMDbDataSet);
+                        countryTableAdapter.Fill(fMDbDataSet.Country);
+                    }
+                    if (dgvActors.DataSource == actorsBindingSource)
+                    {
+                        this.Validate();
+                        actorsBindingSource.EndEdit();
+                        actorsTableAdapter.Update(fMDbDataSet);
+                        actorsTableAdapter.Fill(fMDbDataSet.Actors);
+                    }
+                    if (dgvProd.DataSource == producerBindingSource)
+                    {
+                        this.Validate();
+                        producerBindingSource.EndEdit();
+                        producerTableAdapter.Update(fMDbDataSet);
+                        producerTableAdapter.Fill(fMDbDataSet.Producer);
+                    }
                 }
-                if (dgvCountry.DataSource == countryBindingSource)
+
+                catch (Exception except)
                 {
-                    this.Validate();
-                    countryBindingSource.EndEdit();
-                    countryTableAdapter.Update(fMDbDataSet);
-                    countryTableAdapter.Fill(fMDbDataSet.Country);
-                }
-                if (dgvActors.DataSource == actorsBindingSource)
-                {
-                    this.Validate();
-                    actorsBindingSource.EndEdit();
-                    actorsTableAdapter.Update(fMDbDataSet);
-                    actorsTableAdapter.Fill(fMDbDataSet.Actors);
-                }
-                if (dgvProd.DataSource == producerBindingSource)
-                {
-                    this.Validate();
-                    producerBindingSource.EndEdit();
-                    producerTableAdapter.Update(fMDbDataSet);
-                    producerTableAdapter.Fill(fMDbDataSet.Producer);
+                    MessageBox.Show(except.Message, "Ошибка!");
                 }
             }
         }
@@ -83,5 +102,125 @@ namespace FMDb
             this.Close();
         }
 
+        private void dgvGenre_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            SqlConnection sconn = new SqlConnection(ConnectionString);
+            bool error = false;
+            using (sconn)
+            {
+                sconn.Open();
+                SqlCommand scommand = new SqlCommand();
+                scommand.Connection = sconn;
+                scommand.CommandText = @"SELECT [Genre] from [Genre]";
+                SqlDataReader dr = scommand.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[0].ToString() == dgvGenre.CurrentCell.Value.ToString())
+                        error = true;
+                }
+                if (error == true)
+                {
+                    MessageBox.Show("Такой жанр уже есть!", "Ошибка!");
+                    genreTableAdapter.Fill(fMDbDataSet.Genre);
+                    error = false;
+                }
+            } sconn.Close();
+        }
+
+        private void dgvCountry_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            SqlConnection sconn = new SqlConnection(ConnectionString);
+            bool error = false;
+            using (sconn)
+            {
+                sconn.Open();
+                SqlCommand scommand = new SqlCommand();
+                scommand.Connection = sconn;
+                scommand.CommandText = @"SELECT [Country] from [Country]";
+                SqlDataReader dr = scommand.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[0].ToString() == dgvCountry.CurrentCell.Value.ToString())
+                        error = true;
+                }
+                if (error == true)
+                {
+                    MessageBox.Show("Такая страна уже есть!", "Ошибка!");
+                    countryTableAdapter.Fill(fMDbDataSet.Country);
+                    error = false;
+                }
+            } sconn.Close();
+        }
+
+        private void dgvActors_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            SqlConnection sconn = new SqlConnection(ConnectionString);
+            bool error = false;
+            using (sconn)
+            {
+                sconn.Open();
+                SqlCommand scommand = new SqlCommand();
+                scommand.Connection = sconn;
+                scommand.CommandText = @"SELECT [name] from [Actors]";
+                SqlDataReader dr = scommand.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[0].ToString() == dgvActors.CurrentCell.Value.ToString())
+                        error = true;
+                }
+                if (error == true)
+                {
+                    MessageBox.Show("Такой актер уже есть!", "Ошибка!");
+                    actorsTableAdapter.Fill(fMDbDataSet.Actors);
+                    error = false;
+                }
+            } sconn.Close();
+        }
+
+        private void dgvProd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            SqlConnection sconn = new SqlConnection(ConnectionString);
+            bool error = false;
+            using (sconn)
+            {
+                sconn.Open();
+                SqlCommand scommand = new SqlCommand();
+                scommand.Connection = sconn;
+                scommand.CommandText = @"SELECT [name_p] from [Producer]";
+                SqlDataReader dr = scommand.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[0].ToString() == dgvProd.CurrentCell.Value.ToString())
+                        error = true;
+                }
+                if (error == true)
+                {
+                    MessageBox.Show("Такой режиссер уже есть!", "Ошибка!");
+                    producerTableAdapter.Fill(fMDbDataSet.Producer);
+                    error = false;
+                }
+            } sconn.Close();
+        }
+
+        private void tbfGenre_TextChanged(object sender, EventArgs e)
+        {
+            genreBindingSource.Filter = "[Genre] like '%" + tbfGenre.Text + "%'";
+        }
+
+        private void tbfCountry_TextChanged(object sender, EventArgs e)
+        {
+            countryBindingSource.Filter = "[Country] like '%" + tbfCountry.Text + "%'";
+        }
+
+        private void tbfActors_TextChanged(object sender, EventArgs e)
+        {
+            actorsBindingSource.Filter = "[name] like '%" + tbfActors.Text + "%'";
+        }
+
+        private void tbfProd_TextChanged(object sender, EventArgs e)
+        {
+            producerBindingSource.Filter = "[name_p] like '%" + tbfProd.Text + "%'";
+        }
     }
+
 }

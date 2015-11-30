@@ -637,7 +637,7 @@ namespace FMDb
                     sconn11.Open();
                     SqlCommand scommand = new SqlCommand();
                     scommand.Connection = sconn11;
-                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + log+" AND IDf="+Convert.ToInt32(idf);
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]= '" + log+"' AND IDf="+Convert.ToInt32(idf);
                     SqlDataReader dr = scommand.ExecuteReader();
                     while (dr.Read())
                     {

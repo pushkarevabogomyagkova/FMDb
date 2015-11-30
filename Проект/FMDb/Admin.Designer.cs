@@ -71,6 +71,7 @@
             this.dgLogPassAdm.AllowUserToAddRows = false;
             this.dgLogPassAdm.AllowUserToDeleteRows = false;
             this.dgLogPassAdm.AutoGenerateColumns = false;
+            this.dgLogPassAdm.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgLogPassAdm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLogPassAdm.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.loginDataGridViewTextBoxColumn,

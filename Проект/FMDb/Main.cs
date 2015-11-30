@@ -72,7 +72,7 @@ namespace FMDb
                     sconn.Open();
                     SqlCommand scommand = new SqlCommand();
                     scommand.Connection = sconn;
-                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]='" + login+"'";
                     SqlDataReader dr = scommand.ExecuteReader();
                     int i = 0;
                     while (dr.Read())
@@ -223,7 +223,7 @@ namespace FMDb
                         sconn.Open();
                         SqlCommand scommand = new SqlCommand();
                         scommand.Connection = sconn;
-                        scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                        scommand.CommandText = @"SELECT [IDf] from [View] where [Log]= '" + login+"'";
                         SqlDataReader dr = scommand.ExecuteReader();
                         int i = 0;
                         while (dr.Read())
@@ -524,7 +524,7 @@ namespace FMDb
                     sconn.Open();
                     SqlCommand scommand = new SqlCommand();
                     scommand.Connection = sconn;
-                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]= '" + login+"'";
                     SqlDataReader dr = scommand.ExecuteReader();
                     int i = 0;
                     while (dr.Read())
@@ -592,7 +592,7 @@ namespace FMDb
                             sconn.Open();
                             SqlCommand scommand = new SqlCommand();
                             scommand.Connection = sconn;
-                            scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                            scommand.CommandText = @"SELECT [IDf] from [View] where [Log]= '" + login+"'";
                             SqlDataReader dr = scommand.ExecuteReader();
                             int i = 0;
                             while (dr.Read())
@@ -846,7 +846,7 @@ namespace FMDb
                     sconn.Open();
                     SqlCommand scommand = new SqlCommand();
                     scommand.Connection = sconn;
-                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]=" + login;
+                    scommand.CommandText = @"SELECT [IDf] from [View] where [Log]= '" + login+"'";
                     SqlDataReader dr = scommand.ExecuteReader();
                     int i = 0;
                     while (dr.Read())
